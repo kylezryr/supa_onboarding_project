@@ -1,30 +1,29 @@
-'use client'
+"use client";
 
 import React, { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
-import supabase from "../supabase";
-import Question from "../components/Question";
-import { QuestionsType } from "../types";
+import Link from "next/link";
+import supabase from "../../../../supabase";
+import Question from "../../../../components/Question";
+import { QuestionsType } from "../../../../types";
 
 function Questions({
-  difficulty,
-  type,
-  level,
-  lessonNumber,
+  params,
 }: {
-  difficulty: string;
-  type: string;
-  level: number;
-  lessonNumber: number;
+  params: {
+    difficulty: string;
+    type: string;
+    level: number;
+    lesson: string;
+  };
 }) {
   const [showPracticeQ, setShowPracticeQ] = useState(false);
   const [showRealQ, setShowRealQ] = useState(false);
   const [practiceQ, setPracticeQ] = useState<QuestionsType[]>([]);
   const [realQ, setRealQ] = useState<QuestionsType[]>([]);
-  const typeNavigation = new Map([
-    ["Bounding Box", "boundingBox"],
-    ["Semantic", "semantic"],
-    ["Polygon", "polygon"],
+  const typesMap = new Map([
+    ["boundingBox", "Bounding Box"],
+    ["semantic", "Semantic"],
+    ["polygon", "Polygon"],
   ]);
   const diffNavigation = new Map([
     ["Red", "red"],
@@ -35,20 +34,28 @@ function Questions({
 
   const getPracticeQuestions = async () => {
     const { data } = await supabase.rpc("getpracticequestions", {
-      inputtype: type,
-      inputdifficulty: difficulty,
+      inputtype: typesMap.get(params.type),
+      inputdifficulty: params.difficulty.substring(
+        0,
+        params.difficulty.length - 1,
+      ),
     });
     if (data) {
+      console.log("practice: ", data);
       setPracticeQ(data);
     }
   };
 
   const getRealQuestions = async () => {
     const { data } = await supabase.rpc("getrealquestions", {
-      inputtype: type,
-      inputdifficulty: difficulty,
+      inputtype: typesMap.get(params.type),
+      inputdifficulty: params.difficulty.substring(
+        0,
+        params.difficulty.length - 1,
+      ),
     });
     if (data) {
+      console.log(data);
       setRealQ(data);
     }
   };
@@ -62,23 +69,16 @@ function Questions({
   return (
     <div className="flex flex-col">
       <div className=" flex text-black ml-16 text-xs items-start">
-        <NavLink
-          to={
-            "/" +
-            typeNavigation.get(type) +
-            "/" +
-            diffNavigation.get(difficulty) +
-            level
-          }
-        >
+        <Link href={"/playground/" + params.type + "/" + params.difficulty}>
           {" "}
-          ← Back to {type} {difficulty}
-        </NavLink>
+          ← Back to {typesMap.get(params.type)} {params.difficulty}
+        </Link>
       </div>
       <div className="flex flex-col bg-stone-400 text-black font-bold items-start m-8 ml-16 mr-16 pl-4 h-auto justify-center">
         <p className="m-2">Title here</p>
         <p className="m-2">
-          Skill: {type} {difficulty} - Lesson {lessonNumber}
+          Skill: {typesMap.get(params.type)} {params.difficulty} -{" "}
+          {params.lesson}
         </p>
         <p className="font-normal m-2 text-sm">{description}</p>
       </div>

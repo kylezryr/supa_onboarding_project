@@ -15,14 +15,10 @@ function Question({
     <>
       <div className="flex flex-col m-2 items-start">
         <p className="text-xl font-bold ">
-          {question}  {correctAnswer}
+          {question} {correctAnswer}
         </p>
         {answersList.map((answer) => {
-          return( 
-            <p className="m-1">
-              {answer}
-            </p>
-          )
+          return <p className="m-1">{answer}</p>;
         })}
       </div>
     </>

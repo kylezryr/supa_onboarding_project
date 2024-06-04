@@ -1,8 +1,16 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import Link from "next/link";
 import PointSlider from "./PointSlider";
 
-function DifficultyBanner({ difficulty, navigation, level }:{difficulty: string; navigation: string; level: number}) {
+function DifficultyBanner({
+  difficulty,
+  navigation,
+  level,
+}: {
+  difficulty: string;
+  navigation: string;
+  level: number;
+}) {
   return (
     <div className="flex flex-col bg-stone-400 text-black justify-around items-start p-4 m-4">
       <div className="flex flex-col pl-16 items-start w-full">
@@ -18,7 +26,7 @@ function DifficultyBanner({ difficulty, navigation, level }:{difficulty: string;
           </div>
         </div>
         <div className="p-2 border-2 border-black m-4 pl-8 pr-8">
-          <NavLink to={"/" + navigation + level}>Start</NavLink>
+          <Link href={"/playground/" + navigation + level}>Start</Link>
         </div>
       </div>
     </div>

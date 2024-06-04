@@ -1,6 +1,12 @@
 import React from "react";
 
-function PointSlider({ totalPoints, currentPoints }:{totalPoints: number; currentPoints: number}) {
+function PointSlider({
+  totalPoints,
+  currentPoints,
+}: {
+  totalPoints: number;
+  currentPoints: number;
+}) {
   let width = (currentPoints / totalPoints) * 100;
 
   return (

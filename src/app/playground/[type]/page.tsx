@@ -1,22 +1,27 @@
-'use client'
+"use client";
 
 import React, { useState, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
-import DifficultyBanner from "../components/DifficultyBanner";
-import supabase from "../supabase";
-import SkillHeader from "../components/SkillHeader";
-import { DifficultiesType } from "../types";
+import Link from "next/link";
+import DifficultyBanner from "@/app/components/DifficultyBanner";
+import supabase from "@/app/supabase";
+import SkillHeader from "@/app/components/SkillHeader";
+import { DifficultiesType } from "@/app/types";
 
-function Type({ type, navigation }: { type: string; navigation: string }) {
+function Type({ params }: { params: { type: string } }) {
   const [difficulties, setDifficulties] = useState<DifficultiesType[]>([]);
   const buttonLabels = ["Red", "Yellow", "Green"];
+  const typesMap = new Map([
+    ["boundingBox", "Bounding Box"],
+    ["semantic", "Semantic"],
+    ["polygon", "Polygon"],
+  ]);
   const [redSelected, setRedSelected] = useState(false);
   const [greenSelected, setGreenSelected] = useState(false);
   const [yellowSelected, setYellowSelected] = useState(false);
 
   const getDifficulties = async () => {
     const { data, error } = await supabase.rpc("getdifficulties", {
-      inputtype: type,
+      inputtype: typesMap.get(params.type),
     });
     if (error) {
       console.log(error);
@@ -50,7 +55,7 @@ function Type({ type, navigation }: { type: string; navigation: string }) {
 
   return (
     <>
-      <SkillHeader type={type} showSkill={true} />
+      <SkillHeader type={params.type} showSkill={true} />
       <div className="flex flex-row justify-between">
         <div className="flex flex-col bg-stone-400 m-4 w-1/5 text-black font-bold p-4 items-start h-full">
           <p className="flex justify-start"> Rankings </p>
@@ -73,7 +78,7 @@ function Type({ type, navigation }: { type: string; navigation: string }) {
               return (
                 <DifficultyBanner
                   difficulty={diff.difficulty}
-                  navigation={navigation + "/" + diff.navigation}
+                  navigation={params.type + "/" + diff.navigation}
                   level={diff.level}
                 />
               );
@@ -81,7 +86,7 @@ function Type({ type, navigation }: { type: string; navigation: string }) {
               return (
                 <DifficultyBanner
                   difficulty={diff.difficulty}
-                  navigation={navigation + "/" + diff.navigation}
+                  navigation={params.type + "/" + diff.navigation}
                   level={diff.level}
                 />
               );
@@ -89,14 +94,14 @@ function Type({ type, navigation }: { type: string; navigation: string }) {
               return (
                 <DifficultyBanner
                   difficulty={diff.difficulty}
-                  navigation={navigation + "/" + diff.navigation}
+                  navigation={params.type + "/" + diff.navigation}
                   level={diff.level}
                 />
               );
             }
           })}
           <div className="text-gray-400 ml-4">
-            <NavLink to="/skills"> ← Back to skills</NavLink>
+            <Link href="/playground"> ← Back to playground</Link>
           </div>
         </div>
       </div>
