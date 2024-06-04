@@ -12,7 +12,7 @@ function SkillHeader({
     <div className="bg-stone-400">
       <div className="bg-stone-400 h-8"></div>
       <div className="flex bg-white text-black font-bold justify-start p-4 text-xl mt-8">
-        <p>Playground</p>
+        <p>Playground Test</p>
       </div>
       <div className="flex flex-row text-black align-start justify-start p-4 font-bold">
         {showSkill ? <p>Skill: {type}</p> : <p>No skill selected</p>}
