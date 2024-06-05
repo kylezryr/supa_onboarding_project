@@ -68,7 +68,7 @@ function Questions({
 
   return (
     <div className="flex flex-col">
-      <div className=" flex text-black ml-16 text-xs items-start">
+      <div className=" flex text-black ml-16 text-xs items-start p-1">
         <Link href={"/playground/" + params.type + "/" + params.difficulty}>
           {" "}
           ← Back to {typesMap.get(params.type)} {params.difficulty}

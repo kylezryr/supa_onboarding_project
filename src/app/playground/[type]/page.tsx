@@ -5,6 +5,7 @@ import Link from "next/link";
 import DifficultyBanner from "@/app/components/DifficultyBanner";
 import supabase from "@/app/supabase";
 import SkillHeader from "@/app/components/SkillHeader";
+// import { queries } from '../../../../index.js';
 import { DifficultiesType } from "@/app/types";
 
 function Type({ params }: { params: { type: string } }) {
@@ -15,21 +16,27 @@ function Type({ params }: { params: { type: string } }) {
     ["semantic", "Semantic"],
     ["polygon", "Polygon"],
   ]);
+  const diffMap = new Map([
+    ["Red", "red"],
+    ["Yellow", "yellow"],
+    ["Green", "green"],
+  ]);
   const [redSelected, setRedSelected] = useState(false);
   const [greenSelected, setGreenSelected] = useState(false);
   const [yellowSelected, setYellowSelected] = useState(false);
 
   const getDifficulties = async () => {
-    const { data, error } = await supabase.rpc("getdifficulties", {
-      inputtype: typesMap.get(params.type),
-    });
-    if (error) {
+    try {
+      fetch("http://localhost:9000/difficulties/" + typesMap.get(params.type))
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data);
+          setDifficulties(data);
+        });
+    } catch (error) {
       console.log(error);
-    } else {
-      console.log(data);
-      if (data) {
-        setDifficulties(data);
-      }
     }
   };
 
@@ -72,13 +79,13 @@ function Type({ params }: { params: { type: string } }) {
             })}
           </div>
         </div>
-        <div className="flex flex-col items-start">
+        <div className="flex flex-col items-center justify-start w-4/5">
           {difficulties.map((diff) => {
             if (redSelected && diff.difficulty == "Red") {
               return (
                 <DifficultyBanner
                   difficulty={diff.difficulty}
-                  navigation={params.type + "/" + diff.navigation}
+                  navigation={params.type + "/" + diffMap.get(diff.difficulty)}
                   level={diff.level}
                 />
               );
@@ -86,7 +93,7 @@ function Type({ params }: { params: { type: string } }) {
               return (
                 <DifficultyBanner
                   difficulty={diff.difficulty}
-                  navigation={params.type + "/" + diff.navigation}
+                  navigation={params.type + "/" + diffMap.get(diff.difficulty)}
                   level={diff.level}
                 />
               );
@@ -94,13 +101,13 @@ function Type({ params }: { params: { type: string } }) {
               return (
                 <DifficultyBanner
                   difficulty={diff.difficulty}
-                  navigation={params.type + "/" + diff.navigation}
+                  navigation={params.type + "/" + diffMap.get(diff.difficulty)}
                   level={diff.level}
                 />
               );
             }
           })}
-          <div className="text-gray-400 ml-4">
+          <div className="flex flex-row w-full justify-start text-gray-400 mt-4 ml-4 pl-24">
             <Link href="/playground"> ← Back to playground</Link>
           </div>
         </div>

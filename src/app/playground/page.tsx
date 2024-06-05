@@ -2,20 +2,24 @@
 
 import { useState, useEffect } from "react";
 import React from "react";
-import ProfileHeader from "../components/SkillHeader";
 import SkillBanner from "../components/SkillBanner";
-
 import { SkillsType } from "../types";
-import supabase from "../supabase";
 import SkillHeader from "../components/SkillHeader";
 
 function Skills() {
   const [skills, setSkills] = useState<SkillsType[]>([]);
 
   const getSkills = async () => {
-    const { data } = await supabase.from("types").select();
-    if (data) {
-      setSkills(data);
+    try {
+      fetch("http://localhost:9000")
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          setSkills(data);
+        });
+    } catch (error) {
+      console.log(error);
     }
   };
 
