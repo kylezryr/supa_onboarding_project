@@ -33,7 +33,7 @@ function Lessons({
 
   const getLessons = async () => {
     try {
-      fetch("http://localhost:9000/rank/" + params.type + "/" + params.difficulty + "/" + params.level)
+      fetch("http://localhost:9000/rankID/" + params.type + "/" + params.difficulty + "/" + params.level)
         .then((response) => {
           return response.json();
         })

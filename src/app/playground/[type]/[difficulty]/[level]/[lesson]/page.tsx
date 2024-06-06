@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import supabase from "../../../../../supabase";
 import Question from "../../../../../components/Question";
 import { QuestionsType } from "../../../../../types";
 
@@ -18,8 +17,7 @@ function Questions({
 }) {
   const [showPracticeQ, setShowPracticeQ] = useState(false);
   const [showRealQ, setShowRealQ] = useState(false);
-  const [practiceQ, setPracticeQ] = useState<QuestionsType[]>([]);
-  const [realQ, setRealQ] = useState<QuestionsType[]>([]);
+  const [questions, setQuestions] = useState<QuestionsType[]>([]);
   const typesMap = new Map([
     ["boundingBox", "Bounding Box"],
     ["semantic", "Semantic"],
@@ -30,39 +28,43 @@ function Questions({
     ["green", "Green"],
     ["yellow", "Yellow"],
   ]);
+  const typeToID = new Map([
+    ["boundingBox", 0],
+    ["semantic", 18],
+    ["polygon", 9],
+  ]);
+  const diffToID = new Map([
+    ["red", 0],
+    ["yellow", 3],
+    ["green", 6],
+  ])
   const [description, setDescription] = useState("");
-
-  const getPracticeQuestions = async () => {
-    const { data } = await supabase.rpc("getpracticequestions", {
-      inputtype: typesMap.get(params.type),
-      inputdifficulty: params.difficulty.substring(
-        0,
-        params.difficulty.length - 1,
-      ),
-    });
-    if (data) {
-      console.log("practice: ", data);
-      setPracticeQ(data);
-    }
-  };
-
-  const getRealQuestions = async () => {
-    const { data } = await supabase.rpc("getrealquestions", {
-      inputtype: typesMap.get(params.type),
-      inputdifficulty: params.difficulty.substring(
-        0,
-        params.difficulty.length - 1,
-      ),
-    });
-    if (data) {
-      console.log(data);
-      setRealQ(data);
+  
+  const getQuestions = async () => {
+    const url = `http://localhost:9000/lessonID/${params.type}/${params.difficulty}/${params.level}/${params.lesson}`
+    try {
+      fetch(url)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          const lessonID = data[0].id
+          console.log("id: ", lessonID)
+          fetch("http://localhost:9000/questions/" + lessonID).then((response) => {
+            return response.json()
+          }).then((data) => {
+            console.log("questions:", data)
+            setQuestions(data);
+          })
+        });
+    } catch (error) {
+      console.log(error);
     }
   };
 
   useEffect(() => {
-    getPracticeQuestions();
-    getRealQuestions();
+    console.log("t:", params.type, "d:", params.difficulty, "lv", params.level, "le", params.lesson)
+    getQuestions();
     setDescription("example description");
   }, []);
 
@@ -99,15 +101,20 @@ function Questions({
           </button>
         </div>
         {showPracticeQ &&
-          practiceQ.map((q) => {
-            return (
+          questions.map((q) => {
+            if (q.practice) {
+              return (
               <Question
-                question={q.question}
+                question_text={q.question_text}
+                question_number={q.question_number}
                 answers={q.answers}
-                correctAnswer={q.correctAnswer}
+                correctAnswer={q.correct_answer}
+                points={q.points}
               />
-            );
-          })}
+              )
+            }
+          })
+          }
       </div>
       <div className="bg-stone-400 flex flex-col justify-center items-start text-black m-8 ml-16 mr-16 p-2">
         <p className="font-bold text-xl m-2 mb-4">Lesson Quiz</p>
@@ -120,14 +127,18 @@ function Questions({
           Start quiz
         </button>
         {showRealQ &&
-          realQ.map((q) => {
-            return (
+          questions.map((q) => {
+            if (!q.practice) {
+              return (
               <Question
-                question={q.question}
+                question_text={q.question_text}
+                question_number={q.question_number}
                 answers={q.answers}
-                correctAnswer={q.correctAnswer}
+                correctAnswer={q.correct_answer}
+                points={q.points}
               />
-            );
+              )
+            }
           })}
       </div>
     </div>

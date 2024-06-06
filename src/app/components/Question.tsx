@@ -1,24 +1,30 @@
 import React from "react";
 
 function Question({
-  question,
+  question_text,
+  question_number,
   answers,
   correctAnswer,
+  points,
 }: {
-  question: string;
-  answers: string;
+  question_text: string;
+  question_number: number;
+  answers: string[];
   correctAnswer: number;
+  points: number;
 }) {
-  const answersList = answers.split(", ");
 
   return (
     <>
       <div className="flex flex-col m-2 items-start">
         <p className="text-xl font-bold ">
-          {question} {correctAnswer}
+          Question {question_number} ({points} points)
         </p>
-        {answersList.map((answer) => {
-          return <p className="m-1">{answer}</p>;
+        <p className="pl-2 font-bold">
+          {question_text}
+        </p>
+        {answers.map((answer) => {
+          return <p className="m-1 pl-4">{answer}</p>;
         })}
       </div>
     </>

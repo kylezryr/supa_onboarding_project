@@ -40,7 +40,14 @@ app.get("/lessons/:rank_id", (request, response) => {
     .catch((error) => response.send(error));
   });
 
-app.get("/rank/:type/:difficulty/:level", (request, response) => {
+app.get("/lessonID/:type/:difficulty/:level/:lesson_number", (req, res) => {
+  queries
+    .getLessonID(req.params.type, req.params.difficulty, req.params.level, req.params.lesson_number)
+    .then((results) => res.send(results))
+    .catch((error) => res.send(error));
+  });
+
+app.get("/rankID/:type/:difficulty/:level", (request, response) => {
   queries
   .getRankID(request.params.type, request.params.difficulty, request.params.level)
   .then((results) => response.send(results))

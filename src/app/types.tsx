@@ -11,10 +11,14 @@ export interface SkillsType {
 }
 
 export interface QuestionsType {
-  question: string;
-  questionNumber: number;
-  answers: string;
-  correctAnswer: number;
+  id: number;
+  lesson_id: number;
+  question_number: number;
+  question_text: string;
+  answers: string[];
+  correct_answer: number;
+  practice: boolean;
+  points: number;
 }
 
 export interface LessonsType {

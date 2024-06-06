@@ -17,8 +17,6 @@ const getDifficulties = async( type ) => {
     return result;
 }
 
-//get lessons (type, difficulty, level)
-
 //get questions (lesson id)
 const getQuestions = async( lesson_id ) => {
   const result = await database("questions").select('*').where('lesson_id', lesson_id);
@@ -32,7 +30,12 @@ const getLessons = async( rank_id ) => {
 
 const getRankID = async( type, difficulty, level) => {
   const result = await database("difficulties").where({type: typesMap.get(type), difficulty: diffMap.get(difficulty), level: level}).select('id')
-  return result
+  return result;
+}
+
+const getLessonID = async( type, difficulty, level, lesson_number) => {
+  const result = await database("lessons").where({type: typesMap.get(type), difficulty: diffMap.get(difficulty), level: level, lesson_number: lesson_number}).select('id')
+  return result;
 }
 
 module.exports = {
@@ -43,4 +46,5 @@ module.exports = {
   getQuestions,
   getLessons,
   getRankID,
+  getLessonID,
 };
