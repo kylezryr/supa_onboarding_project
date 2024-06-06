@@ -26,7 +26,7 @@ function DifficultyBanner({
           </div>
         </div>
         <div className="p-2 border-2 border-black m-4 pl-8 pr-8">
-          <Link href={"/playground/" + navigation + level}>Start</Link>
+          <Link href={"/playground/" + navigation + "/" + level}>Start</Link>
         </div>
       </div>
     </div>

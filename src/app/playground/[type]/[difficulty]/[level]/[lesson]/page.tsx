@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import supabase from "../../../../supabase";
-import Question from "../../../../components/Question";
-import { QuestionsType } from "../../../../types";
+import supabase from "../../../../../supabase";
+import Question from "../../../../../components/Question";
+import { QuestionsType } from "../../../../../types";
 
 function Questions({
   params,
@@ -26,9 +26,9 @@ function Questions({
     ["polygon", "Polygon"],
   ]);
   const diffNavigation = new Map([
-    ["Red", "red"],
-    ["Green", "green"],
-    ["Yellow", "yellow"],
+    ["red", "Red"],
+    ["green", "Green"],
+    ["yellow", "Yellow"],
   ]);
   const [description, setDescription] = useState("");
 
@@ -69,16 +69,16 @@ function Questions({
   return (
     <div className="flex flex-col">
       <div className=" flex text-black ml-16 text-xs items-start p-1">
-        <Link href={"/playground/" + params.type + "/" + params.difficulty}>
+        <Link href={"/playground/" + params.type + "/" + params.difficulty + "/" + params.level}>
           {" "}
-          ← Back to {typesMap.get(params.type)} {params.difficulty}
+          ← Back to {typesMap.get(params.type)} {diffNavigation.get(params.difficulty)} {params.level}
         </Link>
       </div>
       <div className="flex flex-col bg-stone-400 text-black font-bold items-start m-8 ml-16 mr-16 pl-4 h-auto justify-center">
         <p className="m-2">Title here</p>
         <p className="m-2">
-          Skill: {typesMap.get(params.type)} {params.difficulty} -{" "}
-          {params.lesson}
+          Skill: {typesMap.get(params.type)} {diffNavigation.get(params.difficulty)} -{" "}
+          Lesson {params.lesson}
         </p>
         <p className="font-normal m-2 text-sm">{description}</p>
       </div>

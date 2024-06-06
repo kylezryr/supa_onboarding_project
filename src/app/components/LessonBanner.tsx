@@ -4,10 +4,12 @@ import Link from "next/link";
 function LessonBanner({
   type,
   difficulty,
+  level,
   lessonNumber,
 }: {
   type: string;
   difficulty: string;
+  level: number;
   lessonNumber: number;
 }) {
   return (
@@ -29,7 +31,9 @@ function LessonBanner({
                 type +
                 "/" +
                 difficulty +
-                "/lesson" +
+                "/" +
+                level +
+                "/" +
                 lessonNumber
               }
             >

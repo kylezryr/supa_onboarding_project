@@ -20,9 +20,29 @@ app.get("/", (request, response) => {
 });
 
 app.get("/difficulties/:type", (request, response) => {
-    console.log("type: " + request.params.type)
   queries
     .getDifficulties(request.params.type)
     .then((results) => response.send(results))
     .catch((error) => response.send(error));
 });
+
+app.get("/questions/:lesson_id", (request, response) => {
+queries
+  .getQuestions(request.params.lesson_id)
+  .then((results) => response.send(results))
+  .catch((error) => response.send(error));
+});
+
+app.get("/lessons/:rank_id", (request, response) => {
+  queries
+    .getLessons(request.params.rank_id)
+    .then((results) => response.send(results))
+    .catch((error) => response.send(error));
+  });
+
+app.get("/rank/:type/:difficulty/:level", (request, response) => {
+  queries
+  .getRankID(request.params.type, request.params.difficulty, request.params.level)
+  .then((results) => response.send(results))
+  .catch((error) => response.send(error));
+})
