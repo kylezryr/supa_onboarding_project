@@ -25,6 +25,13 @@ const getQuestions = async (lesson_id) => {
   return result;
 };
 
+const getLesson = async (lesson_id) => {
+  const result = await database("lessons")
+    .select("*")
+    .where("id", lesson_id);
+  return result;
+}
+
 const getLessons = async (rank_id) => {
   const result = await database("lessons")
     .select("*")
@@ -82,6 +89,10 @@ const getTypeTotalScores = async () => {
   return result;
 };
 
+const updateLessonScore = async (lesson_id) => {
+  database("lessons")
+}
+
 module.exports = {
   getAll() {
     return database("types");
@@ -97,4 +108,6 @@ module.exports = {
   },
   getMaxRanks,
   getTypeTotalScores,
+  getLesson,
+  updateLessonScore
 };

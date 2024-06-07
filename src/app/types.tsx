@@ -3,6 +3,8 @@ export interface DifficultiesType {
   type: string;
   navigation: string;
   level: number;
+  total_points: number;
+  current_points: number;
 }
 
 export interface SkillsType {

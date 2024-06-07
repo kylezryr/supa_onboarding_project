@@ -27,14 +27,14 @@ function Skills() {
 
   const getScores = async () => {
     try {
-      setIsLoading(true)
+      setIsLoading(true);
       fetch(`http://localhost:9000/typeScores`)
         .then((response) => {
           return response.json();
         })
         .then((data) => {
           setScores(data);
-          setIsLoading(false)
+          setIsLoading(false);
         });
     } catch (error) {
       console.log(error);
@@ -54,8 +54,8 @@ function Skills() {
           {!isLoading &&
             skills.map((skill) => {
               const filtered_scores = scores.filter((score) => {
-                return score.type === skill.type
-              })
+                return score.type === skill.type;
+              });
               console.log(filtered_scores);
               return (
                 <SkillBanner

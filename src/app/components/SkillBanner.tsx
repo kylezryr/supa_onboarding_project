@@ -19,7 +19,10 @@ function SkillBanner({
         <Link href={"/playground/" + navigation}>{type}</Link>
       </div>
       <div className="flex flex-col w-1/3 items-center">
-        <p className="m-1"> {`${current_points} of ${total_points} Kaya Points`} </p>
+        <p className="m-1">
+          {" "}
+          {`${current_points} of ${total_points} Kaya Points`}{" "}
+        </p>
         <PointSlider
           totalPoints={total_points}
           currentPoints={current_points}

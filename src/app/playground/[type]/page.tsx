@@ -3,9 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import DifficultyBanner from "@/app/components/DifficultyBanner";
-import supabase from "@/app/supabase";
 import SkillHeader from "@/app/components/SkillHeader";
-// import { queries } from '../../../../index.js';
 import { DifficultiesType } from "@/app/types";
 
 function Type({ params }: { params: { type: string } }) {
@@ -87,6 +85,8 @@ function Type({ params }: { params: { type: string } }) {
                   difficulty={diff.difficulty}
                   navigation={params.type + "/" + diffMap.get(diff.difficulty)}
                   level={diff.level}
+                  totalPoints={diff.total_points}
+                  currentPoints={diff.current_points}
                 />
               );
             } else if (yellowSelected && diff.difficulty == "Yellow") {
@@ -95,6 +95,8 @@ function Type({ params }: { params: { type: string } }) {
                   difficulty={diff.difficulty}
                   navigation={params.type + "/" + diffMap.get(diff.difficulty)}
                   level={diff.level}
+                  totalPoints={diff.total_points}
+                  currentPoints={diff.current_points}
                 />
               );
             } else if (greenSelected && diff.difficulty == "Green") {
@@ -103,6 +105,8 @@ function Type({ params }: { params: { type: string } }) {
                   difficulty={diff.difficulty}
                   navigation={params.type + "/" + diffMap.get(diff.difficulty)}
                   level={diff.level}
+                  totalPoints={diff.total_points}
+                  currentPoints={diff.current_points}
                 />
               );
             }

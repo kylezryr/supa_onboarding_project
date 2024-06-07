@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Question from "../../../../../components/Question";
-import { QuestionsType } from "../../../../../types";
+import { QuestionsType, LessonsType } from "../../../../../types";
 
 function Questions({
   params,
@@ -18,6 +18,8 @@ function Questions({
   const [showPracticeQ, setShowPracticeQ] = useState(false);
   const [showRealQ, setShowRealQ] = useState(false);
   const [questions, setQuestions] = useState<QuestionsType[]>([]);
+  const [lessonData, setLessonData] = useState<LessonsType>();
+  // const [pointsScored, setPointsScored] = useState(0);
   const typesMap = new Map([
     ["boundingBox", "Bounding Box"],
     ["semantic", "Semantic"],
@@ -38,25 +40,30 @@ function Questions({
     ["yellow", 3],
     ["green", 6],
   ]);
-  const [description, setDescription] = useState("");
 
   const getQuestions = async () => {
-    const url = `http://localhost:9000/lessonID/${params.type}/${params.difficulty}/${params.level}/${params.lesson}`;
     try {
-      fetch(url)
+      fetch(
+        `http://localhost:9000/lessonID/${params.type}/${params.difficulty}/${params.level}/${params.lesson}`,
+      )
         .then((response) => {
           return response.json();
         })
         .then((data) => {
           const lessonID = data[0].id;
-          console.log("id: ", lessonID);
           fetch("http://localhost:9000/questions/" + lessonID)
             .then((response) => {
               return response.json();
             })
             .then((data) => {
-              console.log("questions:", data);
               setQuestions(data);
+            });
+          fetch("http://localhost:9000/lesson/" + lessonID)
+            .then((response) => {
+              return response.json();
+            })
+            .then((data) => {
+              setLessonData(data[0]);
             });
         });
     } catch (error) {
@@ -65,18 +72,7 @@ function Questions({
   };
 
   useEffect(() => {
-    console.log(
-      "t:",
-      params.type,
-      "d:",
-      params.difficulty,
-      "lv",
-      params.level,
-      "le",
-      params.lesson,
-    );
     getQuestions();
-    setDescription("example description");
   }, []);
 
   return (
@@ -98,12 +94,12 @@ function Questions({
         </Link>
       </div>
       <div className="flex flex-col bg-stone-400 text-black font-bold items-start m-8 ml-16 mr-16 pl-4 h-auto justify-center">
-        <p className="m-2">Title here</p>
+        <p className="m-2">{lessonData?.title}</p>
         <p className="m-2">
           Skill: {typesMap.get(params.type)}{" "}
           {diffNavigation.get(params.difficulty)} - Lesson {params.lesson}
         </p>
-        <p className="font-normal m-2 text-sm">{description}</p>
+        <p className="font-normal m-2 text-sm">{lessonData?.description}</p>
       </div>
       <div className="flex flex-col font-bold bg-stone-400 text-black m-8 ml-16 mr-16 p-2 items-start">
         <p className="m-2">Read this guide</p>
@@ -131,6 +127,7 @@ function Questions({
                   answers={q.answers}
                   correctAnswer={q.correct_answer}
                   points={q.points}
+                  practice={q.practice}
                 />
               );
             }
@@ -139,7 +136,7 @@ function Questions({
       <div className="bg-stone-400 flex flex-col justify-center items-start text-black m-8 ml-16 mr-16 p-2">
         <p className="font-bold text-xl m-2 mb-4">Lesson Quiz</p>
         <p className="m-2">Test your knowledge of the skills in this course.</p>
-        <p className="m-2">Complete this quiz to earn 250 Kaya Points!</p>
+        <p className="m-2">Complete this quiz to earn {lessonData?.total_points} Kaya Points!</p>
         <button
           onClick={() => setShowRealQ(!showRealQ)}
           className="m-8 border-2 border-black p-2"
@@ -156,6 +153,7 @@ function Questions({
                   answers={q.answers}
                   correctAnswer={q.correct_answer}
                   points={q.points}
+                  practice={q.practice}
                 />
               );
             }

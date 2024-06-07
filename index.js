@@ -33,6 +33,13 @@ app.get("/questions/:lesson_id", (request, response) => {
     .catch((error) => response.send(error));
 });
 
+app.get("/lesson/:lesson_id", (request, response) => {
+  queries
+    .getLesson(request.params.lesson_id)
+    .then((results) => response.send(results))
+    .catch((error) => response.send(error));
+});
+
 app.get("/lessons/:rank_id", (request, response) => {
   queries
     .getLessons(request.params.rank_id)
