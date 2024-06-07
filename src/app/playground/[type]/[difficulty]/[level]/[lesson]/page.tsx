@@ -37,25 +37,27 @@ function Questions({
     ["red", 0],
     ["yellow", 3],
     ["green", 6],
-  ])
+  ]);
   const [description, setDescription] = useState("");
-  
+
   const getQuestions = async () => {
-    const url = `http://localhost:9000/lessonID/${params.type}/${params.difficulty}/${params.level}/${params.lesson}`
+    const url = `http://localhost:9000/lessonID/${params.type}/${params.difficulty}/${params.level}/${params.lesson}`;
     try {
       fetch(url)
         .then((response) => {
           return response.json();
         })
         .then((data) => {
-          const lessonID = data[0].id
-          console.log("id: ", lessonID)
-          fetch("http://localhost:9000/questions/" + lessonID).then((response) => {
-            return response.json()
-          }).then((data) => {
-            console.log("questions:", data)
-            setQuestions(data);
-          })
+          const lessonID = data[0].id;
+          console.log("id: ", lessonID);
+          fetch("http://localhost:9000/questions/" + lessonID)
+            .then((response) => {
+              return response.json();
+            })
+            .then((data) => {
+              console.log("questions:", data);
+              setQuestions(data);
+            });
         });
     } catch (error) {
       console.log(error);
@@ -63,7 +65,16 @@ function Questions({
   };
 
   useEffect(() => {
-    console.log("t:", params.type, "d:", params.difficulty, "lv", params.level, "le", params.lesson)
+    console.log(
+      "t:",
+      params.type,
+      "d:",
+      params.difficulty,
+      "lv",
+      params.level,
+      "le",
+      params.lesson,
+    );
     getQuestions();
     setDescription("example description");
   }, []);
@@ -71,16 +82,26 @@ function Questions({
   return (
     <div className="flex flex-col">
       <div className=" flex text-black ml-16 text-xs items-start p-1">
-        <Link href={"/playground/" + params.type + "/" + params.difficulty + "/" + params.level}>
+        <Link
+          href={
+            "/playground/" +
+            params.type +
+            "/" +
+            params.difficulty +
+            "/" +
+            params.level
+          }
+        >
           {" "}
-          ← Back to {typesMap.get(params.type)} {diffNavigation.get(params.difficulty)} {params.level}
+          ← Back to {typesMap.get(params.type)}{" "}
+          {diffNavigation.get(params.difficulty)} {params.level}
         </Link>
       </div>
       <div className="flex flex-col bg-stone-400 text-black font-bold items-start m-8 ml-16 mr-16 pl-4 h-auto justify-center">
         <p className="m-2">Title here</p>
         <p className="m-2">
-          Skill: {typesMap.get(params.type)} {diffNavigation.get(params.difficulty)} -{" "}
-          Lesson {params.lesson}
+          Skill: {typesMap.get(params.type)}{" "}
+          {diffNavigation.get(params.difficulty)} - Lesson {params.lesson}
         </p>
         <p className="font-normal m-2 text-sm">{description}</p>
       </div>
@@ -104,17 +125,16 @@ function Questions({
           questions.map((q) => {
             if (q.practice) {
               return (
-              <Question
-                question_text={q.question_text}
-                question_number={q.question_number}
-                answers={q.answers}
-                correctAnswer={q.correct_answer}
-                points={q.points}
-              />
-              )
+                <Question
+                  question_text={q.question_text}
+                  question_number={q.question_number}
+                  answers={q.answers}
+                  correctAnswer={q.correct_answer}
+                  points={q.points}
+                />
+              );
             }
-          })
-          }
+          })}
       </div>
       <div className="bg-stone-400 flex flex-col justify-center items-start text-black m-8 ml-16 mr-16 p-2">
         <p className="font-bold text-xl m-2 mb-4">Lesson Quiz</p>
@@ -130,14 +150,14 @@ function Questions({
           questions.map((q) => {
             if (!q.practice) {
               return (
-              <Question
-                question_text={q.question_text}
-                question_number={q.question_number}
-                answers={q.answers}
-                correctAnswer={q.correct_answer}
-                points={q.points}
-              />
-              )
+                <Question
+                  question_text={q.question_text}
+                  question_number={q.question_number}
+                  answers={q.answers}
+                  correctAnswer={q.correct_answer}
+                  points={q.points}
+                />
+              );
             }
           })}
       </div>

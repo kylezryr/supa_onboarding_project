@@ -33,3 +33,20 @@ export interface LessonsType {
   total_points: number;
   passed: boolean;
 }
+
+export interface RanksType {
+  id: number;
+  type: string;
+  difficulty: string;
+  level: number;
+  total_points: number;
+  current_points: number;
+  unlocked: boolean;
+  completed: boolean;
+}
+
+export interface ScoresType {
+  type: string;
+  sum_total: number;
+  sum_current: number;
+}

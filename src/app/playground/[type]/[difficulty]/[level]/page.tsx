@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
@@ -29,23 +29,30 @@ function Lessons({
     ["green", "Green"],
     ["yellow", "Yellow"],
   ]);
-  
 
   const getLessons = async () => {
     try {
-      fetch("http://localhost:9000/rankID/" + params.type + "/" + params.difficulty + "/" + params.level)
+      fetch(
+        "http://localhost:9000/rankID/" +
+          params.type +
+          "/" +
+          params.difficulty +
+          "/" +
+          params.level,
+      )
         .then((response) => {
           return response.json();
         })
         .then((data) => {
-          const rankID = data[0].id
-          fetch("http://localhost:9000/lessons/" + rankID).then((response) => {
-            return response.json()
-          }).then((data) => {
-            setLessons(data);
-          })
+          const rankID = data[0].id;
+          fetch("http://localhost:9000/lessons/" + rankID)
+            .then((response) => {
+              return response.json();
+            })
+            .then((data) => {
+              setLessons(data);
+            });
         });
-
     } catch (error) {
       console.log(error);
     }
@@ -53,7 +60,7 @@ function Lessons({
 
   useEffect(() => {
     getLessons();
-  }, [])
+  }, []);
 
   return (
     <>
@@ -65,14 +72,14 @@ function Lessons({
       </div>
       <div className="flex flex-col justify-center items-center text-black">
         {lessons.map((lesson) => {
-          return(
+          return (
             <LessonBanner
               difficulty={params.difficulty}
               type={params.type}
               level={lesson.level}
               lessonNumber={lesson.lesson_number}
-        />
-          )
+            />
+          );
         })}
         <div className="text-gray-400 ml-4">
           <Link href={"/playground/" + params.type}>

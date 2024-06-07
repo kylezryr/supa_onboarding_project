@@ -1,37 +1,17 @@
 import React from "react";
 
-function PointSliderText({
+function RankSlider({
   totalPoints,
   currentPoints,
-  difficulty,
   level,
 }: {
   totalPoints: number;
   currentPoints: number;
-  difficulty: string;
   level: number;
 }) {
   let width = (currentPoints / totalPoints) * 100;
-  const difficultyColor =
-    difficulty.substring(0, difficulty.length).charAt(0).toUpperCase() +
-    difficulty.substring(0, difficulty.length).slice(1);
-  const difficultyNumber = level;
-  const startText = difficultyColor + " " + difficultyNumber;
-  let endText;
-
-  if (difficultyColor === "Level ") {
-    endText = difficultyColor + " " + (difficultyNumber + 1);
-  } else if (difficultyColor !== "Level" && difficultyNumber > 2) {
-    if (difficultyColor === "Green") {
-      endText = "Yellow 1";
-    } else if (difficultyColor === "Yellow") {
-      endText = "Red 1";
-    } else if (difficultyColor === "Red") {
-      endText = "Max Rank";
-    }
-  } else {
-    endText = difficultyColor + " " + (difficultyNumber + 1);
-  }
+  const startText = `Level ${level}`;
+  const endText = `Level ${level + 1}`;
 
   return (
     <div className="flex flex-col">
@@ -58,4 +38,4 @@ function PointSliderText({
   );
 }
 
-export default PointSliderText;
+export default RankSlider;

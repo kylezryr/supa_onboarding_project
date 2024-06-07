@@ -1,5 +1,5 @@
 import React from "react";
-import PointSliderText from "./PointSliderText";
+import RankSlider from "./RankSlider";
 // import picture from "../../assets/kyleramachandran.jpg";
 
 function ProfileHeader() {
@@ -21,11 +21,7 @@ function ProfileHeader() {
         </div>
 
         <div className="w-1/2">
-          <PointSliderText
-            totalPoints={1000}
-            currentPoints={100}
-            difficulty="Level 5"
-          />
+          <RankSlider totalPoints={1000} currentPoints={100} level={5} />
         </div>
       </div>
     </div>
