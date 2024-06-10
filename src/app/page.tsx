@@ -25,31 +25,6 @@ export default function Home() {
     }
   };
 
-  // const getScores = async () => {
-  //   {maxRanks.map((rank) => {
-  //     try {
-  //       fetch(`http://localhost:9000/scores/`)
-  //         .then((response) => {
-  //           return response.json();
-  //         })
-  //         .then((data) => {
-  //           const lessonID = data[0].id
-  //           console.log("id: ", lessonID)
-  //           fetch("http://localhost:9000/questions/" + lessonID).then((response) => {
-  //             return response.json()
-  //           }).then((data) => {
-  //             console.log(data)
-  //             return(
-  //               <ProfileBanner type="Bounding Box" difficulty="green3" />
-  //             )
-  //           })
-  //         });
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   })}
-  // };
-
   useEffect(() => {
     getMaxRanks();
   }, []);

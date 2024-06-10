@@ -59,7 +59,7 @@ function Question({
         })}
         <div className="flex flex-row items-center p-1">
           <button
-            className={`border-black border-2 p-1 m-1 ${buttonColour}`}
+            className={`border-black border-2 p-1 m-1 rounded-lg ${buttonColour}`}
             onClick={checkAnswer}
           >
             Submit

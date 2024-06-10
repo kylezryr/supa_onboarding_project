@@ -18,6 +18,7 @@ exports.seed = async function (knex) {
         "This is the first lesson of image annotation for Bounding Box Red 1",
       passed: false,
       total_points: 150,
+      current_points: 0,
     },
     {
       id: 2,
@@ -31,6 +32,7 @@ exports.seed = async function (knex) {
         "This is the second lesson of image annotation for Bounding Box Red 1",
       passed: false,
       total_points: 150,
+      current_points: 0,
     },
     {
       id: 3,
@@ -44,6 +46,7 @@ exports.seed = async function (knex) {
         "This is the third lesson for Bounding Box Red 1 about advanced image annotation",
       passed: false,
       total_points: 150,
+      current_points: 0,
     },
     {
       id: 4,
@@ -57,6 +60,7 @@ exports.seed = async function (knex) {
         "This is the first lesson for Bounding Box Red 2 about drawing boxes",
       passed: false,
       total_points: 150,
+      current_points: 0,
     },
   ]);
 };

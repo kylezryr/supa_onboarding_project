@@ -2,8 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import supabase from "../../../../supabase";
-import Question from "../../../../components/Question";
 import LessonBanner from "../../../../components/LessonBanner";
 import { LessonsType } from "@/app/types";
 
@@ -67,7 +65,7 @@ function Lessons({
       <div className="flex flex-col bg-stone-400 text-black font-bold items-start m-4 pl-4 h-20 justify-center">
         <p> {typesMap.get(params.type)} </p>
         <p className="mt-2">
-          Rank: {params.difficulty} {params.level}
+          Rank: {diffMap.get(params.difficulty)} {params.level}
         </p>
       </div>
       <div className="flex flex-col justify-center items-center text-black">
@@ -78,6 +76,8 @@ function Lessons({
               type={params.type}
               level={lesson.level}
               lessonNumber={lesson.lesson_number}
+              current_points={lesson.current_points}
+              total_points={lesson.total_points}
             />
           );
         })}

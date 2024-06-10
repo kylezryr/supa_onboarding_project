@@ -33,6 +33,7 @@ export interface LessonsType {
   title: string;
   description: string;
   total_points: number;
+  current_points: number;
   passed: boolean;
 }
 
@@ -51,4 +52,9 @@ export interface ScoresType {
   type: string;
   sum_total: number;
   sum_current: number;
+}
+
+export interface PointsType {
+  questionNumber: number;
+  points: number;
 }

@@ -97,3 +97,10 @@ app.get("/typeScores", (request, response) => {
     .then((results) => response.send(results))
     .catch((error) => response.send(error));
 });
+
+app.post("/updateLessonScore/:lesson_id/:score/:rank_id", (request, response) => {
+  queries
+    .updateLessonScore(request.params.lesson_id, request.params.score, request.params.rank_id)
+    .then((results) => response.send(results))
+    .catch((error) => response.send(error));
+});
