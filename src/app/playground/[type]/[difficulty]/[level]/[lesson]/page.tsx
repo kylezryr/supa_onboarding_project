@@ -70,22 +70,24 @@ function Questions({
   const updateLessonScore = () => {
     console.log("Points Scored: ", pointsScored);
     try {
-      fetch(`http://localhost:9000/rankID/${params.type}/${params.difficulty}/${params.level}`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        const receivedRankID = data[0].id;
-        setRankID(receivedRankID);
-        fetch(
-          `http://localhost:9000/updateLessonScore/${lessonID}/${pointsScored}/${receivedRankID}`,
-          {
-            method: "POST",
-          },
-        ).then((response) => {
-          console.log("update successful");
+      fetch(
+        `http://localhost:9000/rankID/${params.type}/${params.difficulty}/${params.level}`,
+      )
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          const receivedRankID = data[0].id;
+          setRankID(receivedRankID);
+          fetch(
+            `http://localhost:9000/updateLessonScore/${lessonID}/${pointsScored}/${receivedRankID}`,
+            {
+              method: "POST",
+            },
+          ).then((response) => {
+            console.log("update successful");
+          });
         });
-      })
     } catch (error) {
       console.log(error);
     }
@@ -93,18 +95,15 @@ function Questions({
 
   const updateRank = () => {
     try {
-      fetch(
-        `http://localhost:9000/updateRank/${rankID}`,
-        {
-          method: "POST",
-        },
-      ).then((response) => {
+      fetch(`http://localhost:9000/updateRank/${rankID}`, {
+        method: "POST",
+      }).then((response) => {
         console.log("update successful");
       });
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
     getQuestions();
@@ -180,8 +179,8 @@ function Questions({
           <p className="m-1 font-bold">
             {" "}
             Finished! You scored: {pointsScored} out of{" "}
-            {lessonData?.total_points} points!{" "}
-            You may return to the previous page
+            {lessonData?.total_points} points! You may return to the previous
+            page
           </p>
         )}
       </div>

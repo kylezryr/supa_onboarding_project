@@ -77,7 +77,7 @@ const getScores = async (rank_id) => {
 };
 
 //get the highest rank the user is at for each skill type
-//returns the rank with the highest points that is not completed 
+//returns the rank with the highest points that is not completed
 const getMaxRanks = async () => {
   const subQuery = database("ranks")
     .select("type")
@@ -85,11 +85,8 @@ const getMaxRanks = async () => {
     .where("completed", false)
     .groupBy("type");
   const result = await database("ranks")
-  .distinctOn("type")  
-  .whereIn(
-    ["type", "current_points"],
-    subQuery,
-  );
+    .distinctOn("type")
+    .whereIn(["type", "current_points"], subQuery);
   return result;
 };
 
@@ -108,17 +105,22 @@ const getTypeTotalScores = async () => {
 //unlocks the next lesson once complete
 //also updates the associated rank's score
 const updateLessonScore = async (lesson_id, score, rank_id) => {
-  const scoreData = await database("lessons").select("current_points").where("id", lesson_id);
+  const scoreData = await database("lessons")
+    .select("current_points")
+    .where("id", lesson_id);
   if (Number(score) >= Number(scoreData[0].current_points)) {
     const result = await database("lessons")
-    .where("id", lesson_id)
-    .update({ current_points: score, passed: true });
+      .where("id", lesson_id)
+      .update({ current_points: score, passed: true });
 
     const ranks = await database("ranks")
-    .where("id", rank_id)
-    .increment("current_points", Number(score) - Number(scoreData[0].current_points));
+      .where("id", rank_id)
+      .increment(
+        "current_points",
+        Number(score) - Number(scoreData[0].current_points),
+      );
   } else {
-   console.log("score lower than current score") 
+    console.log("score lower than current score");
   }
   const nextLesson = await database("lessons")
     .where("id", Number(lesson_id) + 1)
@@ -128,22 +130,22 @@ const updateLessonScore = async (lesson_id, score, rank_id) => {
 //checks the rank and marks it complete if total points = current points
 //unlocks the next rank once complete (except for Red 3)
 const updateRank = async (rank_id) => {
-  const rankData = await database("ranks").select('*').where("id", rank_id);
+  const rankData = await database("ranks").select("*").where("id", rank_id);
   const current_points = rankData[0].current_points;
   const total_points = rankData[0].total_points;
   const rankID = Number(rankData[0].id);
   if (Number(current_points) == Number(total_points)) {
-    const completed = await database("ranks") 
-    .where("id", rank_id)
-    .andWhereRaw("?? = ??", ["current_points", "total_points"])
-    .update("completed", true)
+    const completed = await database("ranks")
+      .where("id", rank_id)
+      .andWhereRaw("?? = ??", ["current_points", "total_points"])
+      .update("completed", true);
     if (rankID != 9 || rankID != 18 || rankID != 27) {
       const nextRank = await database("ranks")
-      .where("id", Number(rank_id) + 1)
-      .update("unlocked", true)
+        .where("id", Number(rank_id) + 1)
+        .update("unlocked", true);
     }
   }
-}
+};
 
 module.exports = {
   getAll() {

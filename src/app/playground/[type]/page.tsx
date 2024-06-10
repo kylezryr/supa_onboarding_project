@@ -77,7 +77,7 @@ function Type({ params }: { params: { type: string } }) {
             })}
           </div>
         </div>
-        <div className="flex flex-col items-center justify-start w-4/5">
+        <div className="flex flex-col items-center justify-center w-4/5">
           {difficulties.map((diff) => {
             if (redSelected && diff.difficulty == "Red") {
               return (

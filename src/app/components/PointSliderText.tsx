@@ -12,6 +12,8 @@ function PointSliderText({
   level: number;
 }) {
   let width = (currentPoints / totalPoints) * 100;
+  const ptsTextPos = width < 15 ? "justify-start" : "justify-end";
+
   const difficultyColor =
     difficulty.substring(0, difficulty.length).charAt(0).toUpperCase() +
     difficulty.substring(0, difficulty.length).slice(1);
@@ -36,10 +38,10 @@ function PointSliderText({
   return (
     <div className="flex flex-col">
       <div
-        className="flex flex-row justify-end items-center m-0.5"
+        className={`flex flex-row ${ptsTextPos} items-center m-0.5`}
         style={{ width: `${width}%` }}
       >
-        <p className="text-xs/[8px]">{currentPoints} pts</p>
+        <p className="text-xs/[8px] min-w-16">{currentPoints} pts</p>
       </div>
       <div className="h-2 bg-black w-full rounded">
         <div
