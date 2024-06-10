@@ -26,7 +26,7 @@ function ProfileBanner({
   const difficultyNumber = level;
   return (
     <>
-      <div className="flex flex-row items-center justify-between bg-zinc-100 text-black font-bold m-4 p-4">
+      <div className="flex flex-row items-center justify-between bg-zinc-100 text-black font-bold m-4 p-4 shadow-lg">
         <div className="w-2/3">
           <PointSliderText
             totalPoints={total_points}

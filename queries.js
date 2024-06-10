@@ -80,13 +80,14 @@ const getScores = async (rank_id) => {
 //returns the rank with the highest points that is not completed
 const getMaxRanks = async () => {
   const subQuery = database("ranks")
-    .select("type")
+    .select("type", "id")
     .max("current_points as current_points")
     .where("completed", false)
-    .groupBy("type");
+    .andWhere("unlocked", true)
+    .groupBy("type", "id");
   const result = await database("ranks")
     .distinctOn("type")
-    .whereIn(["type", "current_points"], subQuery);
+    .whereIn(["type", "id", "current_points"], subQuery);
   return result;
 };
 
@@ -98,6 +99,25 @@ const getTypeTotalScores = async () => {
     .sum("total_points as sum_total")
     .sum("current_points as sum_current")
     .groupBy("type");
+  return result;
+};
+
+//returns the rank challenge questions for the rank id
+const getChallengeQuestions = async (rank_id) => {
+  const result = await database("challenge_questions")
+    .select("*")
+    .where("rank_id", rank_id)
+    .orderBy("id");
+  return result;
+};
+
+//returns T/F depending on whether rank challenge should be shown
+//true if lesson 3 of that rank has been passed
+const getShowRankChallenge = async (rank_id) => {
+  const result = await database("lessons")
+    .select("passed")
+    .where("rank_id", rank_id)
+    .andWhere("lesson_number", 3);
   return result;
 };
 
@@ -127,18 +147,19 @@ const updateLessonScore = async (lesson_id, score, rank_id) => {
     .update("unlocked", true);
 };
 
-//checks the rank and marks it complete if total points = current points
-//unlocks the next rank once complete (except for Red 3)
-const updateRank = async (rank_id) => {
+//mark the current rank as complete and unlock the next rank
+const updateRankCompleted = async (rank_id) => {
+  const completedData = await database("ranks")
+    .where("id", rank_id)
+    .andWhereRaw("?? = ??", ["current_points", "total_points"])
+    .update("completed", true);
+
   const rankData = await database("ranks").select("*").where("id", rank_id);
   const current_points = rankData[0].current_points;
   const total_points = rankData[0].total_points;
   const rankID = Number(rankData[0].id);
-  if (Number(current_points) == Number(total_points)) {
-    const completed = await database("ranks")
-      .where("id", rank_id)
-      .andWhereRaw("?? = ??", ["current_points", "total_points"])
-      .update("completed", true);
+  const completed = rankData[0].completed;
+  if (Number(current_points) == Number(total_points) && completed) {
     if (rankID != 9 || rankID != 18 || rankID != 27) {
       const nextRank = await database("ranks")
         .where("id", Number(rank_id) + 1)
@@ -163,6 +184,8 @@ module.exports = {
   getMaxRanks,
   getTypeTotalScores,
   getLesson,
+  getChallengeQuestions,
+  getShowRankChallenge,
   updateLessonScore,
-  updateRank,
+  updateRankCompleted,
 };

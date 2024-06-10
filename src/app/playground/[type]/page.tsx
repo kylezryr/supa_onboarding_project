@@ -62,7 +62,7 @@ function Type({ params }: { params: { type: string } }) {
     <>
       <SkillHeader type={params.type} showSkill={true} />
       <div className="flex flex-row justify-between">
-        <div className="flex flex-col bg-stone-400 m-4 w-1/5 text-black font-bold p-4 items-start h-full">
+        <div className="flex flex-col bg-stone-400 m-4 w-1/5 text-black font-bold p-4 items-start h-full shadow-lg">
           <p className="flex justify-start"> Rankings </p>
           <div className="flex flex-col items-start pl-4">
             {buttonLabels.map((label) => {

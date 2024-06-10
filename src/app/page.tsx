@@ -27,6 +27,7 @@ export default function Home() {
 
   useEffect(() => {
     getMaxRanks();
+    console.log(maxRanks);
   }, []);
 
   return (

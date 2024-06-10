@@ -14,7 +14,7 @@ function SkillBanner({
   total_points: number;
 }) {
   return (
-    <div className="flex flex-row justify-around items-center w-auto bg-zinc-100 text-black flex-wrap h-20 m-4 p-4 font-bold">
+    <div className="flex flex-row justify-around items-center w-auto bg-zinc-100 text-black flex-wrap h-20 m-4 p-4 font-bold shadow-lg">
       <div className="text-blue-600">
         <Link href={"/playground/" + navigation}>{type}</Link>
       </div>

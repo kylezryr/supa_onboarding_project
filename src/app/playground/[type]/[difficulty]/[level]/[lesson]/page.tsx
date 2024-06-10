@@ -92,31 +92,17 @@ function Questions({
       console.log(error);
     }
   };
-
-  const updateRank = () => {
-    try {
-      fetch(`http://localhost:9000/updateRank/${rankID}`, {
-        method: "POST",
-      }).then((response) => {
-        console.log("update successful");
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
     getQuestions();
   }, []);
 
   useEffect(() => {
     updateLessonScore();
-    updateRank();
   }, [quizFinished]);
 
   return (
     <div className="flex flex-col">
-      <div className="flex flex-col bg-stone-400 text-black font-bold items-start m-8 ml-16 mr-16 pl-4 h-auto justify-center">
+      <div className="flex flex-col bg-stone-400 text-black font-bold items-start m-8 ml-16 mr-16 pl-4 h-auto justify-center shadow-lg">
         <p className="m-2">{lessonData?.title}</p>
         <p className="m-2">
           Skill: {typesMap.get(params.type)}{" "}
@@ -124,12 +110,12 @@ function Questions({
         </p>
         <p className="font-normal m-2 text-sm">{lessonData?.description}</p>
       </div>
-      <div className="flex flex-col font-bold bg-stone-400 text-black m-8 ml-16 mr-16 p-2 items-start">
+      <div className="flex flex-col font-bold bg-stone-400 text-black m-8 ml-16 mr-16 p-2 items-start shadow-lg">
         <p className="m-2">Read this guide</p>
         <p className="m-2">Watch this video</p>
         <p className="m-2">Another teaching format</p>
       </div>
-      <div className="bg-stone-400 flex flex-col justify-center items-start text-black m-8 ml-16 mr-16 p-2">
+      <div className="bg-stone-400 flex flex-col justify-center items-start text-black m-8 ml-16 mr-16 p-2 shadow-lg">
         <p className="font-bold text-xl m-2 mb-4">Practice</p>
         <p className="m-2">Test your knowledge of the skills in this course.</p>
         <div className="flex flex-row justify-end">
@@ -156,7 +142,7 @@ function Questions({
             }
           })}
       </div>
-      <div className="bg-stone-400 flex flex-col justify-center items-start text-black m-8 ml-16 mr-16 p-2">
+      <div className="bg-stone-400 flex flex-col justify-center items-start text-black m-8 ml-16 mr-16 p-2 shadow-lg">
         <p className="font-bold text-xl m-2 mb-4">Lesson Quiz</p>
         <p className="m-2">Test your knowledge of the skills in this course.</p>
         <p className="m-2">

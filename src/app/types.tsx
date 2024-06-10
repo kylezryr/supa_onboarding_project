@@ -23,6 +23,15 @@ export interface QuestionsType {
   points: number;
 }
 
+export interface ChallengeQuestionsType {
+  id: number;
+  rank_id: number;
+  question_number: number;
+  question_text: string;
+  answers: string[];
+  correct_answer: number;
+}
+
 export interface LessonsType {
   id: number;
   rank_id: number;

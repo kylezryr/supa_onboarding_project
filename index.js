@@ -98,6 +98,20 @@ app.get("/typeScores", (request, response) => {
     .catch((error) => response.send(error));
 });
 
+app.get("/challengeQuestions/:rank_id", (request, response) => {
+  queries
+    .getChallengeQuestions(request.params.rank_id)
+    .then((results) => response.send(results))
+    .catch((error) => response.send(error));
+});
+
+app.get("/showRankChallenge/:rank_id", (request, response) => {
+  queries
+    .getShowRankChallenge(request.params.rank_id)
+    .then((results) => response.send(results))
+    .catch((error) => response.send(error));
+});
+
 app.post(
   "/updateLessonScore/:lesson_id/:score/:rank_id",
   (request, response) => {
@@ -114,7 +128,7 @@ app.post(
 
 app.post("/updateRank/:rank_id", (request, response) => {
   queries
-    .updateRank(request.params.rank_id)
+    .updateRankCompleted(request.params.rank_id)
     .then((results) => response.send(results))
     .catch((error) => response.send(error));
 });

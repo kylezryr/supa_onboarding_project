@@ -16,6 +16,8 @@ function Lessons({
 }) {
   const [rankID, setRankID] = useState<number>();
   const [lessons, setLessons] = useState<LessonsType[]>([]);
+  const [showRankChallenge, setShowRankChallenge] = useState(false);
+  const rankChallengeBg = showRankChallenge ? "bg-stone-400" : "bg-neutral-200";
 
   const typesMap = new Map([
     ["boundingBox", "Bounding Box"],
@@ -56,13 +58,44 @@ function Lessons({
     }
   };
 
+  const getShowRankChallenge = async () => {
+    try {
+      fetch(
+        "http://localhost:9000/rankID/" +
+          params.type +
+          "/" +
+          params.difficulty +
+          "/" +
+          params.level,
+      )
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          const rankID = data[0].id;
+          fetch("http://localhost:9000/showRankChallenge/" + rankID)
+            .then((response) => {
+              return response.json();
+            })
+            .then((data) => {
+              console.log(data);
+              setShowRankChallenge(data[0].passed);
+            });
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
-    getLessons();
+    getLessons().then(() => {
+      getShowRankChallenge();
+    });
   }, []);
 
   return (
     <>
-      <div className="flex flex-col bg-stone-400 text-black font-bold items-start m-4 pl-4 h-20 justify-center">
+      <div className="flex flex-col bg-stone-400 text-black font-bold items-start m-4 pl-4 h-20 justify-center shadow-lg">
         <p> {typesMap.get(params.type)} </p>
         <p className="mt-2">
           Rank: {diffMap.get(params.difficulty)} {params.level}
@@ -82,6 +115,32 @@ function Lessons({
             />
           );
         })}
+        
+          <div className={`flex flex-col ${rankChallengeBg} p-4 m-16 ml-32 mr-32 shadow-lg`}>
+            <p className="font-bold text-xl p-2">Rank Challenge</p>
+            <p className="p-2">
+              Test your knowledge of the skills in this course with a rank
+              challenge. Go through course material and take quizzes to check
+              your understanding before you start!
+            </p>
+            <div className="p-2 border-black border-2 w-36 font-bold m-2">
+              {showRankChallenge ? (
+                <Link
+                href={`/playground/${params.type}/${params.difficulty}/${params.level}/rankChallenge`}
+              >
+                Rank Challenge
+              </Link>
+              ) : (
+                <Link
+                href={`/playground/${params.type}/${params.difficulty}/${params.level}/rankChallenge`}
+                style={{pointerEvents: "none"}}
+              >
+                Rank Challenge
+              </Link>
+              )}
+            </div>
+          </div>
+        
         <div className="text-gray-400 ml-4">
           <Link href={"/playground/" + params.type}>
             {" "}
