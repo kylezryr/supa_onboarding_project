@@ -78,6 +78,7 @@ function Lessons({
               lessonNumber={lesson.lesson_number}
               current_points={lesson.current_points}
               total_points={lesson.total_points}
+              unlocked={lesson.unlocked}
             />
           );
         })}

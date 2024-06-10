@@ -35,6 +35,7 @@ export interface LessonsType {
   total_points: number;
   current_points: number;
   passed: boolean;
+  unlocked: boolean;
 }
 
 export interface RanksType {

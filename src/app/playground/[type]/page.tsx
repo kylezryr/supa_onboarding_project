@@ -4,11 +4,11 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import DifficultyBanner from "@/app/components/DifficultyBanner";
 import SkillHeader from "@/app/components/SkillHeader";
-import { DifficultiesType } from "@/app/types";
+import { DifficultiesType, RanksType } from "@/app/types";
 
 function Type({ params }: { params: { type: string } }) {
-  const [difficulties, setDifficulties] = useState<DifficultiesType[]>([]);
-  const buttonLabels = ["Red", "Yellow", "Green"];
+  const [difficulties, setDifficulties] = useState<RanksType[]>([]);
+  const buttonLabels = ["Green", "Yellow", "Red"];
   const typesMap = new Map([
     ["boundingBox", "Bounding Box"],
     ["semantic", "Semantic"],
@@ -87,6 +87,7 @@ function Type({ params }: { params: { type: string } }) {
                   level={diff.level}
                   totalPoints={diff.total_points}
                   currentPoints={diff.current_points}
+                  unlocked={diff.unlocked}
                 />
               );
             } else if (yellowSelected && diff.difficulty == "Yellow") {
@@ -97,6 +98,7 @@ function Type({ params }: { params: { type: string } }) {
                   level={diff.level}
                   totalPoints={diff.total_points}
                   currentPoints={diff.current_points}
+                  unlocked={diff.unlocked}
                 />
               );
             } else if (greenSelected && diff.difficulty == "Green") {
@@ -107,6 +109,7 @@ function Type({ params }: { params: { type: string } }) {
                   level={diff.level}
                   totalPoints={diff.total_points}
                   currentPoints={diff.current_points}
+                  unlocked={diff.unlocked}
                 />
               );
             }

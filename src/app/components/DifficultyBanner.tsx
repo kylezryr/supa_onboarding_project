@@ -8,15 +8,19 @@ function DifficultyBanner({
   level,
   currentPoints,
   totalPoints,
+  unlocked,
 }: {
   difficulty: string;
   navigation: string;
   level: number;
   currentPoints: number;
   totalPoints: number;
+  unlocked: boolean;
 }) {
+  const bgColor = unlocked ? "bg-stone-400" : "bg-stone-200"; 
+
   return (
-    <div className="flex flex-col bg-stone-400 text-black justify-around items-start p-4 m-4">
+    <div className={`flex flex-col ${bgColor} text-black justify-around items-start p-4 m-4`}>
       <div className="flex flex-col pl-16 items-start w-full">
         <div className="flex flex-row items-center m-4 justify-between border-black border-2 p-2 pl-8 pr-8">
           <div className="font-bold w-32">
@@ -36,7 +40,11 @@ function DifficultyBanner({
           </div>
         </div>
         <div className="p-2 border-2 border-black m-4 pl-8 pr-8">
-          <Link href={"/playground/" + navigation + "/" + level}>Start</Link>
+          {unlocked ? (
+            <Link href={"/playground/" + navigation + "/" + level} aria-disabled={unlocked}>Start</Link>
+          ) : (
+            <Link href={"/"} style={{pointerEvents: "none"}}>Start</Link>
+          )}
         </div>
       </div>
     </div>

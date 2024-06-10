@@ -84,7 +84,9 @@ const getMaxRanks = async () => {
     .max("current_points as current_points")
     .where("completed", false)
     .groupBy("type");
-  const result = await database("ranks").whereIn(
+  const result = await database("ranks")
+  .distinctOn("type")  
+  .whereIn(
     ["type", "current_points"],
     subQuery,
   );
@@ -103,6 +105,7 @@ const getTypeTotalScores = async () => {
 };
 
 //updates the lesson's score  only if the new score beats the current score
+//unlocks the next lesson once complete
 //also updates the associated rank's score
 const updateLessonScore = async (lesson_id, score, rank_id) => {
   const scoreData = await database("lessons").select("current_points").where("id", lesson_id);
@@ -110,16 +113,37 @@ const updateLessonScore = async (lesson_id, score, rank_id) => {
     const result = await database("lessons")
     .where("id", lesson_id)
     .update({ current_points: score, passed: true });
+
     const ranks = await database("ranks")
     .where("id", rank_id)
     .increment("current_points", Number(score) - Number(scoreData[0].current_points));
-    const completed = await database("ranks")
-    .whereRaw("?? = ??", ["current_points", "total_points"])
-    .update("completed", true)
   } else {
    console.log("score lower than current score") 
   }
+  const nextLesson = await database("lessons")
+    .where("id", Number(lesson_id) + 1)
+    .update("unlocked", true);
 };
+
+//checks the rank and marks it complete if total points = current points
+//unlocks the next rank once complete (except for Red 3)
+const updateRank = async (rank_id) => {
+  const rankData = await database("ranks").select('*').where("id", rank_id);
+  const current_points = rankData[0].current_points;
+  const total_points = rankData[0].total_points;
+  const rankID = Number(rankData[0].id);
+  if (Number(current_points) == Number(total_points)) {
+    const completed = await database("ranks") 
+    .where("id", rank_id)
+    .andWhereRaw("?? = ??", ["current_points", "total_points"])
+    .update("completed", true)
+    if (rankID != 9 || rankID != 18 || rankID != 27) {
+      const nextRank = await database("ranks")
+      .where("id", Number(rank_id) + 1)
+      .update("unlocked", true)
+    }
+  }
+}
 
 module.exports = {
   getAll() {
@@ -138,4 +162,5 @@ module.exports = {
   getTypeTotalScores,
   getLesson,
   updateLessonScore,
+  updateRank,
 };

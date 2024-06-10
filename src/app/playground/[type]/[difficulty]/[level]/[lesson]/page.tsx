@@ -18,6 +18,7 @@ function Questions({
 }) {
   const [showPracticeQ, setShowPracticeQ] = useState(false);
   const [lessonID, setLessonID] = useState();
+  const [rankID, setRankID] = useState();
   const [showRealQ, setShowRealQ] = useState(false);
   const [questions, setQuestions] = useState<QuestionsType[]>([]);
   const [lessonData, setLessonData] = useState<LessonsType>();
@@ -74,9 +75,10 @@ function Questions({
         return response.json();
       })
       .then((data) => {
-        const rankID = data[0].id;
+        const receivedRankID = data[0].id;
+        setRankID(receivedRankID);
         fetch(
-          `http://localhost:9000/updateLessonScore/${lessonID}/${pointsScored}/${rankID}`,
+          `http://localhost:9000/updateLessonScore/${lessonID}/${pointsScored}/${receivedRankID}`,
           {
             method: "POST",
           },
@@ -89,12 +91,28 @@ function Questions({
     }
   };
 
+  const updateRank = () => {
+    try {
+      fetch(
+        `http://localhost:9000/updateRank/${rankID}`,
+        {
+          method: "POST",
+        },
+      ).then((response) => {
+        console.log("update successful");
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     getQuestions();
   }, []);
 
   useEffect(() => {
     updateLessonScore();
+    updateRank();
   }, [quizFinished]);
 
   return (
