@@ -18,11 +18,12 @@ const config: Config = {
       transparent: 'transparent',
       current: 'currentColor',
       'white': '#F5F5F5',
-      'black': '#000000',
+      'darkWhite': '#e5e5e5',
+      'black': '#333738',
       'lightBg': '#7091E6',
       'darkBg': '#3D52A0',
       'darkPrimary': '#8697C4',
-      'lightPrimary': '#c3d2fa',
+      'lightPrimary': '#becbed',
       'accent': '#EDE8F5',
       'link': '#2563EB'
     }

@@ -18,6 +18,7 @@ function Lessons({
   const [lessons, setLessons] = useState<LessonsType[]>([]);
   const [showRankChallenge, setShowRankChallenge] = useState(false);
   const rankChallengeBg = showRankChallenge ? "bg-darkPrimary" : "bg-lightPrimary";
+  const rankTextColor = showRankChallenge ? "text-white" : "text-darkWhite";
 
   const typesMap = new Map([
     ["boundingBox", "Bounding Box"],
@@ -93,8 +94,8 @@ function Lessons({
   }, []);
 
   return (
-    <div className="min-h-screen bg-darkBg pt-2">
-      <div className="flex flex-col bg-lightBg text-black font-bold items-start m-4 p-2 pl-8 justify-center shadow-lg rounded-lg">
+    <>
+      <div className="flex flex-col bg-lightBg text-white font-bold items-start m-4 p-2 pl-8 justify-center shadow-lg rounded-lg">
         <p> {typesMap.get(params.type)} </p>
         <p className="mt-2">
           Rank: {diffMap.get(params.difficulty)} {params.level}
@@ -118,14 +119,14 @@ function Lessons({
           );
         })}
         
-          <div className={`flex flex-col ${rankChallengeBg} p-4 m-16 ml-32 mr-32 shadow-lg rounded-lg text-white`}>
+          <div className={`flex flex-col ${rankChallengeBg} p-4 m-16 ml-32 mr-32 shadow-lg rounded-lg ${rankTextColor}`}>
             <p className="font-bold text-xl p-2">Rank Challenge</p>
             <p className="p-2">
               Test your knowledge of the skills in this course with a rank
               challenge. Go through course material and take quizzes to check
               your understanding before you start!
             </p>
-            <div className={`p-2 border-white border-2 w-36 text-whitefont-bold m-2 rounded-lg`}>
+            <div className={`flex flex-col items-center p-2 border-white border-2 w-36 text-whitefont-bold m-2 rounded-lg`}>
               {showRankChallenge ? (
                 <Link
                 href={`/playground/${params.type}/${params.difficulty}/${params.level}/rankChallenge`}
@@ -150,7 +151,7 @@ function Lessons({
           </Link>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

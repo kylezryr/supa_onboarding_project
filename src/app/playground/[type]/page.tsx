@@ -58,10 +58,10 @@ function Type({ params }: { params: { type: string } }) {
   }, []);
 
   return (
-    <div className="min-h-screen bg-darkBg">
+    <>
       <SkillHeader type={params.type} showSkill={true} />
       <div className="flex flex-row justify-between">
-        <div className="flex flex-col bg-lightBg m-4 w-1/5 text-white font-bold p-4 items-start min-h-screen shadow-lg rounded-lg">
+        <div className="flex flex-col bg-lightBg m-4 w-1/5 text-white font-bold p-4 max-h-40 shadow-lg rounded-lg">
           <p className="flex justify-start"> Rankings </p>
           <div className="flex flex-col items-start pl-4">
             {buttonLabels.map((label) => {
@@ -113,12 +113,12 @@ function Type({ params }: { params: { type: string } }) {
               );
             }
           })}
-          <div className="flex flex-row w-full justify-start text-gray-400 mt-4 ml-4 pl-24">
+          <div className="flex flex-row justify-start text-gray-400 mt-4 ">
             <Link href="/playground"> ← Back to playground</Link>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
