@@ -406,7 +406,7 @@ exports.seed = async function (knex) {
       title: "Introduction to Semantic Segmentation",
       description: "Understanding the basics of semantic segmentation.",
       passed: false,
-      unlocked: false,
+      unlocked: true,
       total_points: 150,
       current_points: 0
     },
@@ -784,7 +784,7 @@ exports.seed = async function (knex) {
         title: "Introduction to Polygon Annotation",
         description: "Understanding the basics of polygon annotation.",
         passed: false,
-        unlocked: false,
+        unlocked: true,
         total_points: 150,
         current_points: 0
       },

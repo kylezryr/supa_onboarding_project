@@ -30,7 +30,6 @@ function Type({ params }: { params: { type: string } }) {
           return response.json();
         })
         .then((data) => {
-          console.log(data);
           setDifficulties(data);
         });
     } catch (error) {

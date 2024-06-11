@@ -67,8 +67,7 @@ function Questions({
     }
   };
 
-  const updateLessonScore = () => {
-    console.log("Points Scored: ", pointsScored);
+  const updateLessonScore = async() => {
     try {
       fetch(
         `http://localhost:9000/rankID/${params.type}/${params.difficulty}/${params.level}`,
@@ -85,19 +84,45 @@ function Questions({
               method: "POST",
             },
           ).then((response) => {
-            console.log("update successful");
+            return response;
           });
         });
     } catch (error) {
       console.log(error);
     }
   };
+
+  const updateRank = async() => {
+    try {
+      fetch(
+        `http://localhost:9000/rankID/${params.type}/${params.difficulty}/${params.level}`,
+      )
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          const receivedRankID = data[0].id;
+          setRankID(receivedRankID);
+          fetch(
+            `http://localhost:9000/updateRank/${receivedRankID}`,
+            {
+              method: "POST",
+            },
+          ).then((response) => {
+            console.log("update successful");
+          });
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     getQuestions();
   }, []);
 
   useEffect(() => {
-    updateLessonScore();
+    updateLessonScore()    
   }, [quizFinished]);
 
   return (

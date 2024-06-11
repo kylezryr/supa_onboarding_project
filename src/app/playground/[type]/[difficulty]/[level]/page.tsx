@@ -78,8 +78,7 @@ function Lessons({
               return response.json();
             })
             .then((data) => {
-              console.log(data);
-              setShowRankChallenge(data[0].passed);
+              setShowRankChallenge(data);
             });
         });
     } catch (error) {
@@ -95,10 +94,13 @@ function Lessons({
 
   return (
     <>
-      <div className="flex flex-col bg-stone-400 text-black font-bold items-start m-4 pl-4 h-20 justify-center shadow-lg">
+      <div className="flex flex-col bg-stone-400 text-black font-bold items-start m-4 p-2 pl-8 justify-center shadow-lg">
         <p> {typesMap.get(params.type)} </p>
         <p className="mt-2">
           Rank: {diffMap.get(params.difficulty)} {params.level}
+        </p>
+        <p className="mt-2 font-normal">
+          You must pass all the lessons first before the rank challenge is unlocked.
         </p>
       </div>
       <div className="flex flex-col justify-center items-center text-black">
