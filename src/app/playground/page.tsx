@@ -47,7 +47,7 @@ function Skills() {
   }, []);
 
   return (
-    <>
+    <div className="min-h-screen bg-darkBg">
       <SkillHeader type=" " showSkill={false} />
       <div>
         <div className="flex flex-col">
@@ -68,7 +68,7 @@ function Skills() {
             })}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

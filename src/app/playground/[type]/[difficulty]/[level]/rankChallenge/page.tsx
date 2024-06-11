@@ -102,9 +102,9 @@ function RankChallenge({
   }, [rankChallengePassed]);
 
   return (
-    <>
+    <div className="min-h-screen bg-darkBg">
       <div className="flex flex-col">
-        <div className="flex flex-col bg-stone-400 text-black font-bold items-start m-8 ml-16 mr-16 p-4 h-auto justify-center">
+        <div className="flex flex-col bg-lightBg text-white font-bold items-start m-8 ml-16 mr-16 p-4 h-auto justify-center rounded-lg">
           <p className="m-2">
             {typesMap.get(params.type)} {diffNavigation.get(params.difficulty)}{" "}
             {params.level}- Rank Challenge
@@ -115,7 +115,7 @@ function RankChallenge({
         </div>
         {questions.map((q) => {
           return (
-            <div className="flex flex-col items-start justify-center bg-stone-400 text-black m-16 mt-4 mb-4 p-4">
+            <div className="flex flex-col items-start justify-center bg-lightBg text-white m-16 mt-4 mb-4 p-4 rounded-lg">
               <ChallengeQuestion
                 question_text={q.question_text}
                 question_number={q.question_number}
@@ -125,9 +125,9 @@ function RankChallenge({
             </div>
           );
         })}
-        <div className="flex flex-col items-center  m-2 ml-16 mr-16 text-black">
+        <div className="flex flex-col items-center  m-2 ml-16 mr-16 text-white">
           <button
-            className={`border-black border-2 p-2 rounded-lg m-1 w-32 ${finishedButtonColor}`}
+            className={`border-white border-2 p-2 rounded-lg m-1 w-32 ${finishedButtonColor}`}
             onClick={finishChallenge}
           >
             Finish quiz
@@ -167,7 +167,7 @@ function RankChallenge({
           </Link>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

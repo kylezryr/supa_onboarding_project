@@ -31,7 +31,7 @@ export default function Home() {
   }, []);
 
   return (
-    <>
+    <div className="bg-darkBg min-h-screen">
       <ProfileHeader />
       {maxRanks.map((rank) => {
         return (
@@ -44,6 +44,6 @@ export default function Home() {
           />
         );
       })}
-    </>
+    </div>
   );
 }

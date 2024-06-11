@@ -126,8 +126,8 @@ function Questions({
   }, [quizFinished]);
 
   return (
-    <div className="flex flex-col">
-      <div className="flex flex-col bg-stone-400 text-black font-bold items-start m-8 ml-16 mr-16 pl-4 h-auto justify-center shadow-lg">
+    <div className="flex flex-col bg-darkBg min-h-screen">
+      <div className="flex flex-col bg-lightBg text-white font-bold items-start m-8 ml-16 mr-16 pl-4 h-auto justify-center shadow-lg rounded-lg">
         <p className="m-2">{lessonData?.title}</p>
         <p className="m-2">
           Skill: {typesMap.get(params.type)}{" "}
@@ -135,18 +135,18 @@ function Questions({
         </p>
         <p className="font-normal m-2 text-sm">{lessonData?.description}</p>
       </div>
-      <div className="flex flex-col font-bold bg-stone-400 text-black m-8 ml-16 mr-16 p-2 items-start shadow-lg">
+      <div className="flex flex-col font-bold bg-lightBg text-white m-8 ml-16 mr-16 p-2 items-start shadow-lg rounded-lg">
         <p className="m-2">Read this guide</p>
         <p className="m-2">Watch this video</p>
         <p className="m-2">Another teaching format</p>
       </div>
-      <div className="bg-stone-400 flex flex-col justify-center items-start text-black m-8 ml-16 mr-16 p-2 shadow-lg">
+      <div className="bg-lightBg flex flex-col justify-center items-start text-white m-8 ml-16 mr-16 p-2 shadow-lg rounded-lg">
         <p className="font-bold text-xl m-2 mb-4">Practice</p>
         <p className="m-2">Test your knowledge of the skills in this course.</p>
         <div className="flex flex-row justify-end">
           <button
             onClick={() => setShowPracticeQ(!showPracticeQ)}
-            className="m-8 border-2 border-black p-2 rounded-lg bg-neutral-300"
+            className="m-8 border-2 border-white font-bold p-2 rounded-lg bg-neutral-300"
           >
             Practice
           </button>
@@ -167,7 +167,7 @@ function Questions({
             }
           })}
       </div>
-      <div className="bg-stone-400 flex flex-col justify-center items-start text-black m-8 ml-16 mr-16 p-2 shadow-lg">
+      <div className="bg-lightBg flex flex-col justify-center items-start text-white m-8 ml-16 mr-16 p-2 shadow-lg rounded-lg">
         <p className="font-bold text-xl m-2 mb-4">Lesson Quiz</p>
         <p className="m-2">Test your knowledge of the skills in this course.</p>
         <p className="m-2">
@@ -175,7 +175,7 @@ function Questions({
         </p>
         <button
           onClick={() => setShowRealQ(!showRealQ)}
-          className="m-8 border-2 border-black p-2 rounded-lg bg-neutral-300"
+          className="m-8 border-2 border-white font-bold p-2 rounded-lg bg-neutral-300"
         >
           Start quiz
         </button>
@@ -195,7 +195,7 @@ function Questions({
           </p>
         )}
       </div>
-      <div className="flex flex-row justify-center text-gray-400 ml-64 mr-64">
+      <div className="flex flex-row justify-center text-white ml-64 mr-64">
         <Link
           href={
             "/playground/" +

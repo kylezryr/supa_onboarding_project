@@ -6,10 +6,10 @@ function ProfileHeader() {
   return (
     <div className="bg-stone-400">
       {/* <div className="bg-stone-400 h-4"></div> */}
-      <div className="flex bg-white text-black font-bold justify-start p-4 text-xl pl-8">
+      <div className="flex bg-darkBg text-white font-bold justify-start p-4 text-xl pl-8">
         <p className="ml-2 mr-2">My Profile</p>
       </div>
-      <div className="flex flex-row text-black items-center justify-between p-4 pl-8 pr-8 font-bold">
+      <div className="flex flex-row text-white bg-lightBg items-center justify-between p-4 pl-8 pr-8 font-bold">
         <div className="flex flex-row items-center">
           <div className="m-2">
             <p> image </p>

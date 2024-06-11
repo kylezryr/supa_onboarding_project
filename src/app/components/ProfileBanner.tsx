@@ -26,7 +26,7 @@ function ProfileBanner({
   const difficultyNumber = level;
   return (
     <>
-      <div className="flex flex-row items-center justify-between bg-zinc-100 text-black font-bold m-4 p-4 shadow-lg">
+      <div className="flex flex-row items-center justify-between bg-darkPrimary text-white font-bold m-4 p-4 shadow-lg rounded-xl">
         <div className="w-2/3">
           <PointSliderText
             totalPoints={total_points}
@@ -37,7 +37,7 @@ function ProfileBanner({
         </div>
         <div className="flex flex-col items-center">
           <p className="m-1 w-32">{difficultyColor + " " + difficultyNumber}</p>
-          <div className="m-1 w-32 text-blue-600">
+          <div className="m-1 w-32 text-link">
             <Link href={"/playground/" + typesMap.get(type)}>{type}</Link>
           </div>
         </div>

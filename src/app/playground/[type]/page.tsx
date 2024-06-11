@@ -58,10 +58,10 @@ function Type({ params }: { params: { type: string } }) {
   }, []);
 
   return (
-    <>
+    <div className="min-h-screen bg-darkBg">
       <SkillHeader type={params.type} showSkill={true} />
       <div className="flex flex-row justify-between">
-        <div className="flex flex-col bg-stone-400 m-4 w-1/5 text-black font-bold p-4 items-start h-full shadow-lg">
+        <div className="flex flex-col bg-lightBg m-4 w-1/5 text-white font-bold p-4 items-start min-h-screen shadow-lg rounded-lg">
           <p className="flex justify-start"> Rankings </p>
           <div className="flex flex-col items-start pl-4">
             {buttonLabels.map((label) => {
@@ -118,7 +118,7 @@ function Type({ params }: { params: { type: string } }) {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -27,7 +27,7 @@ function RankSlider({
           style={{ width: `${width}%` }}
         ></div>
       </div>
-      <div className="flex flex-row justify-between items-center text-black">
+      <div className="flex flex-row justify-between items-center text-white">
         <p className="m-2">{startText}</p>
         <p className="m-2">{endText}</p>
       </div>
