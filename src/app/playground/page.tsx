@@ -50,7 +50,7 @@ function Skills() {
     <>
       <SkillHeader type=" " showSkill={false} />
       <div>
-        <div className="flex flex-col pt-4">
+        <div className="flex flex-col p-4">
           {!isLoading &&
             skills.map((skill) => {
               const filtered_scores = scores.filter((score) => {

@@ -198,7 +198,7 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 14,
@@ -212,7 +212,7 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 15,
@@ -226,7 +226,7 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 16,
@@ -240,7 +240,7 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 17,
@@ -254,7 +254,7 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 18,
@@ -268,7 +268,7 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 19,
@@ -282,7 +282,7 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 20,
@@ -296,7 +296,7 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 21,
@@ -310,7 +310,7 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 22,
@@ -324,7 +324,7 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 23,
@@ -338,7 +338,7 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 24,
@@ -352,7 +352,7 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 25,
@@ -366,7 +366,7 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 26,
@@ -380,7 +380,7 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 27,
@@ -394,7 +394,7 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 28,
@@ -408,7 +408,7 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: true,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 29,
@@ -422,7 +422,7 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 30,
@@ -432,11 +432,12 @@ exports.seed = async function (knex) {
       level: 1,
       lesson_number: 3,
       title: "Semantic Segmentation Applications",
-      description: "Exploring real-world applications of semantic segmentation.",
+      description:
+        "Exploring real-world applications of semantic segmentation.",
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 31,
@@ -450,7 +451,7 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 32,
@@ -460,11 +461,12 @@ exports.seed = async function (knex) {
       level: 2,
       lesson_number: 2,
       title: "Semantic Segmentation Challenges",
-      description: "Challenges faced in semantic segmentation and how to overcome them.",
+      description:
+        "Challenges faced in semantic segmentation and how to overcome them.",
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 33,
@@ -474,11 +476,12 @@ exports.seed = async function (knex) {
       level: 2,
       lesson_number: 3,
       title: "Semantic Segmentation Optimization",
-      description: "Optimizing semantic segmentation models for better performance.",
+      description:
+        "Optimizing semantic segmentation models for better performance.",
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 34,
@@ -492,7 +495,7 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 35,
@@ -506,7 +509,7 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 36,
@@ -516,11 +519,12 @@ exports.seed = async function (knex) {
       level: 3,
       lesson_number: 3,
       title: "Semantic Segmentation in Autonomous Systems",
-      description: "Understanding how semantic segmentation is used in autonomous systems.",
+      description:
+        "Understanding how semantic segmentation is used in autonomous systems.",
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 37,
@@ -534,7 +538,7 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 38,
@@ -548,7 +552,7 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 39,
@@ -562,7 +566,7 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 40,
@@ -576,7 +580,7 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 41,
@@ -586,11 +590,12 @@ exports.seed = async function (knex) {
       level: 2,
       lesson_number: 2,
       title: "Semantic Labeling Challenges",
-      description: "Challenges faced in semantic labeling and how to overcome them.",
+      description:
+        "Challenges faced in semantic labeling and how to overcome them.",
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 42,
@@ -600,11 +605,12 @@ exports.seed = async function (knex) {
       level: 2,
       lesson_number: 3,
       title: "Semantic Labeling Optimization",
-      description: "Optimizing semantic labeling models for better performance.",
+      description:
+        "Optimizing semantic labeling models for better performance.",
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 43,
@@ -618,7 +624,7 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 44,
@@ -632,7 +638,7 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 45,
@@ -642,11 +648,12 @@ exports.seed = async function (knex) {
       level: 3,
       lesson_number: 3,
       title: "Semantic Labeling in Autonomous Systems",
-      description: "Understanding how semantic labeling is used in autonomous systems.",
+      description:
+        "Understanding how semantic labeling is used in autonomous systems.",
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
+      current_points: 0,
     },
     {
       id: 46,
@@ -660,9 +667,9 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
-      },
-      {
+      current_points: 0,
+    },
+    {
       id: 47,
       rank_id: 16,
       type: "Semantic",
@@ -674,9 +681,9 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
-      },
-      {
+      current_points: 0,
+    },
+    {
       id: 48,
       rank_id: 16,
       type: "Semantic",
@@ -688,9 +695,9 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
-      },
-      {
+      current_points: 0,
+    },
+    {
       id: 49,
       rank_id: 17,
       type: "Semantic",
@@ -702,9 +709,9 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
-      },
-      {
+      current_points: 0,
+    },
+    {
       id: 50,
       rank_id: 17,
       type: "Semantic",
@@ -712,13 +719,14 @@ exports.seed = async function (knex) {
       level: 2,
       lesson_number: 2,
       title: "Semantic Annotation Challenges",
-      description: "Challenges faced in semantic annotation and how to overcome them.",
+      description:
+        "Challenges faced in semantic annotation and how to overcome them.",
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
-      },
-      {
+      current_points: 0,
+    },
+    {
       id: 51,
       rank_id: 17,
       type: "Semantic",
@@ -726,13 +734,14 @@ exports.seed = async function (knex) {
       level: 2,
       lesson_number: 3,
       title: "Semantic Annotation Optimization",
-      description: "Optimizing semantic annotation models for better performance.",
+      description:
+        "Optimizing semantic annotation models for better performance.",
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
-      },
-      {
+      current_points: 0,
+    },
+    {
       id: 52,
       rank_id: 18,
       type: "Semantic",
@@ -744,9 +753,9 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
-      },
-      {
+      current_points: 0,
+    },
+    {
       id: 53,
       rank_id: 18,
       type: "Semantic",
@@ -758,9 +767,9 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
-      },
-      {
+      current_points: 0,
+    },
+    {
       id: 54,
       rank_id: 18,
       type: "Semantic",
@@ -768,279 +777,285 @@ exports.seed = async function (knex) {
       level: 3,
       lesson_number: 3,
       title: "Semantic Annotation in Autonomous Systems",
-      description: "Understanding how semantic annotation is used in autonomous systems.",
+      description:
+        "Understanding how semantic annotation is used in autonomous systems.",
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
-      },
-      {
-        id: 55,
-        rank_id: 19,
-        type: "Polygon",
-        difficulty: "Green",
-        level: 1,
-        lesson_number: 1,
-        title: "Introduction to Polygon Annotation",
-        description: "Understanding the basics of polygon annotation.",
-        passed: false,
-        unlocked: true,
-        total_points: 150,
-        current_points: 0
-      },
-      {
-        id: 56,
-        rank_id: 19,
-        type: "Polygon",
-        difficulty: "Green",
-        level: 1,
-        lesson_number: 2,
-        title: "Polygon Annotation Techniques",
-        description: "Learning various techniques used in polygon annotation.",
-        passed: false,
-        unlocked: false,
-        total_points: 150,
-        current_points: 0
-      },
-      {
-        id: 57,
-        rank_id: 19,
-        type: "Polygon",
-        difficulty: "Green",
-        level: 1,
-        lesson_number: 3,
-        title: "Polygon Annotation Applications",
-        description: "Exploring real-world applications of polygon annotation.",
-        passed: false,
-        unlocked: false,
-        total_points: 150,
-        current_points: 0
-      },
-      {
-        id: 58,
-        rank_id: 20,
-        type: "Polygon",
-        difficulty: "Green",
-        level: 2,
-        lesson_number: 1,
-        title: "Advanced Polygon Annotation Techniques",
-        description: "Mastering advanced techniques in polygon annotation.",
-        passed: false,
-        unlocked: false,
-        total_points: 150,
-        current_points: 0
-      },
-      {
-        id: 59,
-        rank_id: 20,
-        type: "Polygon",
-        difficulty: "Green",
-        level: 2,
-        lesson_number: 2,
-        title: "Polygon Annotation Challenges",
-        description: "Challenges faced in polygon annotation and how to overcome them.",
-        passed: false,
-        unlocked: false,
-        total_points: 150,
-        current_points: 0
-      },
-      {
-        id: 60,
-        rank_id: 20,
-        type: "Polygon",
-        difficulty: "Green",
-        level: 2,
-        lesson_number: 3,
-        title: "Polygon Annotation Optimization",
-        description: "Optimizing polygon annotation models for better performance.",
-        passed: false,
-        unlocked: false,
-        total_points: 150,
-        current_points: 0
-      },
-      {
-        id: 61,
-        rank_id: 21,
-        type: "Polygon",
-        difficulty: "Green",
-        level: 3,
-        lesson_number: 1,
-        title: "Polygon Annotation Mastery",
-        description: "Mastering the art of polygon annotation.",
-        passed: false,
-        unlocked: false,
-        total_points: 150,
-        current_points: 0
-      },
-      {
-        id: 62,
-        rank_id: 21,
-        type: "Polygon",
-        difficulty: "Green",
-        level: 3,
-        lesson_number: 2,
-        title: "Polygon Annotation Innovations",
-        description: "Exploring innovative uses of polygon annotation.",
-        passed: false,
-        unlocked: false,
-        total_points: 150,
-        current_points: 0
-      },
-      {
-        id: 63,
-        rank_id: 21,
-        type: "Polygon",
-        difficulty: "Green",
-        level: 3,
-        lesson_number: 3,
-        title: "Polygon Annotation in Autonomous Systems",
-        description: "Understanding how polygon annotation is used in autonomous systems.",
-        passed: false,
-        unlocked: false,
-        total_points: 150,
-        current_points: 0
-      },
-      {
-        id: 64,
-        rank_id: 22,
-        type: "Polygon",
-        difficulty: "Yellow",
-        level: 1,
-        lesson_number: 1,
-        title: "Introduction to Polygon Labeling",
-        description: "Understanding the basics of polygon labeling.",
-        passed: false,
-        unlocked: false,
-        total_points: 150,
-        current_points: 0
-      },
-      {
-        id: 65,
-        rank_id: 22,
-        type: "Polygon",
-        difficulty: "Yellow",
-        level: 1,
-        lesson_number: 2,
-        title: "Polygon Labeling Techniques",
-        description: "Learning various techniques used in polygon labeling.",
-        passed: false,
-        unlocked: false,
-        total_points: 150,
-        current_points: 0
-      },
-      {
-        id: 66,
-        rank_id: 22,
-        type: "Polygon",
-        difficulty: "Yellow",
-        level: 1,
-        lesson_number: 3,
-        title: "Polygon Labeling Applications",
-        description: "Exploring real-world applications of polygon labeling.",
-        passed: false,
-        unlocked: false,
-        total_points: 150,
-        current_points: 0
-      },
-      {
-        id: 67,
-        rank_id: 23,
-        type: "Polygon",
-        difficulty: "Yellow",
-        level: 2,
-        lesson_number: 1,
-        title: "Advanced Polygon Labeling Techniques",
-        description: "Mastering advanced techniques in polygon labeling.",
-        passed: false,
-        unlocked: false,
-        total_points: 150,
-        current_points: 0
-      },
-      {
-        id: 68,
-        rank_id: 23,
-        type: "Polygon",
-        difficulty: "Yellow",
-        level: 2,
-        lesson_number: 2,
-        title: "Polygon Labeling Challenges",
-        description: "Challenges faced in polygon labeling and how to overcome them.",
-        passed: false,
-        unlocked: false,
-        total_points: 150,
-        current_points: 0
-      },
-      {
-        id: 69,
-        rank_id: 23,
-        type: "Polygon",
-        difficulty: "Yellow",
-        level: 2,
-        lesson_number: 3,
-        title: "Polygon Labeling Optimization",
-        description: "Optimizing polygon labeling models for better performance.",
-        passed: false,
-        unlocked: false,
-        total_points: 150,
-        current_points: 0
-      },
-      {
-        id: 70,
-        rank_id: 24,
-        type: "Polygon",
-        difficulty: "Yellow",
-        level: 3,
-        lesson_number: 1,
-        title: "Polygon Labeling Mastery",
-        description: "Mastering the art of polygon labeling.",
-        passed: false,
-        unlocked: false,
-        total_points: 150,
-        current_points: 0
-      },
-      {
-        id: 71,
-        rank_id: 24,
-        type: "Polygon",
-        difficulty: "Yellow",
-        level: 3,
-        lesson_number: 2,
-        title: "Polygon Labeling Innovations",
-        description: "Exploring innovative uses of polygon labeling.",
-        passed: false,
-        unlocked: false,
-        total_points: 150,
-        current_points: 0
-      },
-      {
-        id: 72,
-        rank_id: 24,
-        type: "Polygon",
-        difficulty: "Yellow",
-        level: 3,
-        lesson_number: 3,
-        title: "Polygon Labeling in Autonomous Systems",
-        description: "Understanding how polygon labeling is used in autonomous systems.",
-        passed: false,
-        unlocked: false,
-        total_points: 150,
-        current_points: 0
-      },
-      {
-        id: 73,
-        rank_id: 25,
-        type: "Polygon",
-        difficulty: "Red",
-        level: 1,
-        lesson_number: 1,
-        title: "Introduction to Polygon Segmentation",
-        description: "Understanding the basics of polygon segmentation.",
-        passed: false,
-        unlocked: false,
-        total_points: 150,
-        current_points: 0
-        },
-      {
+      current_points: 0,
+    },
+    {
+      id: 55,
+      rank_id: 19,
+      type: "Polygon",
+      difficulty: "Green",
+      level: 1,
+      lesson_number: 1,
+      title: "Introduction to Polygon Annotation",
+      description: "Understanding the basics of polygon annotation.",
+      passed: false,
+      unlocked: true,
+      total_points: 150,
+      current_points: 0,
+    },
+    {
+      id: 56,
+      rank_id: 19,
+      type: "Polygon",
+      difficulty: "Green",
+      level: 1,
+      lesson_number: 2,
+      title: "Polygon Annotation Techniques",
+      description: "Learning various techniques used in polygon annotation.",
+      passed: false,
+      unlocked: false,
+      total_points: 150,
+      current_points: 0,
+    },
+    {
+      id: 57,
+      rank_id: 19,
+      type: "Polygon",
+      difficulty: "Green",
+      level: 1,
+      lesson_number: 3,
+      title: "Polygon Annotation Applications",
+      description: "Exploring real-world applications of polygon annotation.",
+      passed: false,
+      unlocked: false,
+      total_points: 150,
+      current_points: 0,
+    },
+    {
+      id: 58,
+      rank_id: 20,
+      type: "Polygon",
+      difficulty: "Green",
+      level: 2,
+      lesson_number: 1,
+      title: "Advanced Polygon Annotation Techniques",
+      description: "Mastering advanced techniques in polygon annotation.",
+      passed: false,
+      unlocked: false,
+      total_points: 150,
+      current_points: 0,
+    },
+    {
+      id: 59,
+      rank_id: 20,
+      type: "Polygon",
+      difficulty: "Green",
+      level: 2,
+      lesson_number: 2,
+      title: "Polygon Annotation Challenges",
+      description:
+        "Challenges faced in polygon annotation and how to overcome them.",
+      passed: false,
+      unlocked: false,
+      total_points: 150,
+      current_points: 0,
+    },
+    {
+      id: 60,
+      rank_id: 20,
+      type: "Polygon",
+      difficulty: "Green",
+      level: 2,
+      lesson_number: 3,
+      title: "Polygon Annotation Optimization",
+      description:
+        "Optimizing polygon annotation models for better performance.",
+      passed: false,
+      unlocked: false,
+      total_points: 150,
+      current_points: 0,
+    },
+    {
+      id: 61,
+      rank_id: 21,
+      type: "Polygon",
+      difficulty: "Green",
+      level: 3,
+      lesson_number: 1,
+      title: "Polygon Annotation Mastery",
+      description: "Mastering the art of polygon annotation.",
+      passed: false,
+      unlocked: false,
+      total_points: 150,
+      current_points: 0,
+    },
+    {
+      id: 62,
+      rank_id: 21,
+      type: "Polygon",
+      difficulty: "Green",
+      level: 3,
+      lesson_number: 2,
+      title: "Polygon Annotation Innovations",
+      description: "Exploring innovative uses of polygon annotation.",
+      passed: false,
+      unlocked: false,
+      total_points: 150,
+      current_points: 0,
+    },
+    {
+      id: 63,
+      rank_id: 21,
+      type: "Polygon",
+      difficulty: "Green",
+      level: 3,
+      lesson_number: 3,
+      title: "Polygon Annotation in Autonomous Systems",
+      description:
+        "Understanding how polygon annotation is used in autonomous systems.",
+      passed: false,
+      unlocked: false,
+      total_points: 150,
+      current_points: 0,
+    },
+    {
+      id: 64,
+      rank_id: 22,
+      type: "Polygon",
+      difficulty: "Yellow",
+      level: 1,
+      lesson_number: 1,
+      title: "Introduction to Polygon Labeling",
+      description: "Understanding the basics of polygon labeling.",
+      passed: false,
+      unlocked: false,
+      total_points: 150,
+      current_points: 0,
+    },
+    {
+      id: 65,
+      rank_id: 22,
+      type: "Polygon",
+      difficulty: "Yellow",
+      level: 1,
+      lesson_number: 2,
+      title: "Polygon Labeling Techniques",
+      description: "Learning various techniques used in polygon labeling.",
+      passed: false,
+      unlocked: false,
+      total_points: 150,
+      current_points: 0,
+    },
+    {
+      id: 66,
+      rank_id: 22,
+      type: "Polygon",
+      difficulty: "Yellow",
+      level: 1,
+      lesson_number: 3,
+      title: "Polygon Labeling Applications",
+      description: "Exploring real-world applications of polygon labeling.",
+      passed: false,
+      unlocked: false,
+      total_points: 150,
+      current_points: 0,
+    },
+    {
+      id: 67,
+      rank_id: 23,
+      type: "Polygon",
+      difficulty: "Yellow",
+      level: 2,
+      lesson_number: 1,
+      title: "Advanced Polygon Labeling Techniques",
+      description: "Mastering advanced techniques in polygon labeling.",
+      passed: false,
+      unlocked: false,
+      total_points: 150,
+      current_points: 0,
+    },
+    {
+      id: 68,
+      rank_id: 23,
+      type: "Polygon",
+      difficulty: "Yellow",
+      level: 2,
+      lesson_number: 2,
+      title: "Polygon Labeling Challenges",
+      description:
+        "Challenges faced in polygon labeling and how to overcome them.",
+      passed: false,
+      unlocked: false,
+      total_points: 150,
+      current_points: 0,
+    },
+    {
+      id: 69,
+      rank_id: 23,
+      type: "Polygon",
+      difficulty: "Yellow",
+      level: 2,
+      lesson_number: 3,
+      title: "Polygon Labeling Optimization",
+      description: "Optimizing polygon labeling models for better performance.",
+      passed: false,
+      unlocked: false,
+      total_points: 150,
+      current_points: 0,
+    },
+    {
+      id: 70,
+      rank_id: 24,
+      type: "Polygon",
+      difficulty: "Yellow",
+      level: 3,
+      lesson_number: 1,
+      title: "Polygon Labeling Mastery",
+      description: "Mastering the art of polygon labeling.",
+      passed: false,
+      unlocked: false,
+      total_points: 150,
+      current_points: 0,
+    },
+    {
+      id: 71,
+      rank_id: 24,
+      type: "Polygon",
+      difficulty: "Yellow",
+      level: 3,
+      lesson_number: 2,
+      title: "Polygon Labeling Innovations",
+      description: "Exploring innovative uses of polygon labeling.",
+      passed: false,
+      unlocked: false,
+      total_points: 150,
+      current_points: 0,
+    },
+    {
+      id: 72,
+      rank_id: 24,
+      type: "Polygon",
+      difficulty: "Yellow",
+      level: 3,
+      lesson_number: 3,
+      title: "Polygon Labeling in Autonomous Systems",
+      description:
+        "Understanding how polygon labeling is used in autonomous systems.",
+      passed: false,
+      unlocked: false,
+      total_points: 150,
+      current_points: 0,
+    },
+    {
+      id: 73,
+      rank_id: 25,
+      type: "Polygon",
+      difficulty: "Red",
+      level: 1,
+      lesson_number: 1,
+      title: "Introduction to Polygon Segmentation",
+      description: "Understanding the basics of polygon segmentation.",
+      passed: false,
+      unlocked: false,
+      total_points: 150,
+      current_points: 0,
+    },
+    {
       id: 74,
       rank_id: 25,
       type: "Polygon",
@@ -1052,9 +1067,9 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
-      },
-      {
+      current_points: 0,
+    },
+    {
       id: 75,
       rank_id: 25,
       type: "Polygon",
@@ -1066,9 +1081,9 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
-      },
-      {
+      current_points: 0,
+    },
+    {
       id: 76,
       rank_id: 26,
       type: "Polygon",
@@ -1080,9 +1095,9 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
-      },
-      {
+      current_points: 0,
+    },
+    {
       id: 77,
       rank_id: 26,
       type: "Polygon",
@@ -1090,13 +1105,14 @@ exports.seed = async function (knex) {
       level: 2,
       lesson_number: 2,
       title: "Polygon Segmentation Challenges",
-      description: "Challenges faced in polygon segmentation and how to overcome them.",
+      description:
+        "Challenges faced in polygon segmentation and how to overcome them.",
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
-      },
-      {
+      current_points: 0,
+    },
+    {
       id: 78,
       rank_id: 26,
       type: "Polygon",
@@ -1104,13 +1120,14 @@ exports.seed = async function (knex) {
       level: 2,
       lesson_number: 3,
       title: "Polygon Segmentation Optimization",
-      description: "Optimizing polygon segmentation models for better performance.",
+      description:
+        "Optimizing polygon segmentation models for better performance.",
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
-      },
-      {
+      current_points: 0,
+    },
+    {
       id: 79,
       rank_id: 27,
       type: "Polygon",
@@ -1122,9 +1139,9 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
-      },
-      {
+      current_points: 0,
+    },
+    {
       id: 80,
       rank_id: 27,
       type: "Polygon",
@@ -1136,9 +1153,9 @@ exports.seed = async function (knex) {
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
-      },
-      {
+      current_points: 0,
+    },
+    {
       id: 81,
       rank_id: 27,
       type: "Polygon",
@@ -1146,11 +1163,12 @@ exports.seed = async function (knex) {
       level: 3,
       lesson_number: 3,
       title: "Polygon Segmentation in Autonomous Systems",
-      description: "Understanding how polygon segmentation is used in autonomous systems.",
+      description:
+        "Understanding how polygon segmentation is used in autonomous systems.",
       passed: false,
       unlocked: false,
       total_points: 150,
-      current_points: 0
-      }
+      current_points: 0,
+    },
   ]);
 };

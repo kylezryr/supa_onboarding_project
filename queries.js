@@ -1,7 +1,7 @@
 const connection = require("./knexfile")[process.env.NODE_ENV || "development"];
 const database = require("knex")(connection);
 
-const knex = require("knex")
+const knex = require("knex");
 
 const typesMap = new Map([
   ["boundingBox", "Bounding Box"],
@@ -120,34 +120,40 @@ const getShowRankChallenge = async (rank_id) => {
   const result = await database("lessons")
     .select("passed")
     .where("rank_id", rank_id)
-    .andWhereRaw("?? = ??", ["current_points", "total_points"])
+    .andWhereRaw("?? = ??", ["current_points", "total_points"]);
   return result.length > 2;
 };
 
 //get the users current level based on their total points
 //returns level row
 const getCurrentLevel = async () => {
-  const totalPoints = await database("ranks")
-  .sum("current_points as total_points");
+  const totalPoints = await database("ranks").sum(
+    "current_points as total_points",
+  );
   const userCurrentPoints = Number(totalPoints[0].total_points);
 
   const result = await database("user_levels")
-  .select(
-    'id', 
-    'level_number', 
-    'start_points', 
-    'end_points'
-  )
-  .where('start_points', '<=', userCurrentPoints)
-  .andWhere('end_points', '>', userCurrentPoints)
-  .first();
+    .select("id", "level_number", "start_points", "end_points")
+    .where("start_points", "<=", userCurrentPoints)
+    .andWhere("end_points", ">", userCurrentPoints)
+    .first();
 
   if (result) {
     result.current_points = userCurrentPoints - result.start_points;
   }
-  
+
   return result;
-}
+};
+
+//gets the next rank passing in rank id
+//to display Up next button
+const getNextRank = async (rank_id) => {
+  const result = await database("ranks")
+    .select("*")
+    .where("id", Number(rank_id) + 1)
+    .first();
+  return result;
+};
 
 //updates the lesson's score only if the new score beats the current score
 //unlocks the next lesson once complete
@@ -192,10 +198,10 @@ const updateRankCompleted = async (rank_id) => {
   const total_points = rankData[0].total_points;
   const rankID = Number(rankData[0].id);
   const completed = rankData[0].completed;
-  console.log("rankdata: ", rankData)
+  console.log("rankdata: ", rankData);
   if (Number(current_points) == Number(total_points) && completed) {
     if (rankID != 9 || rankID != 18 || rankID != 27) {
-      console.log("update next rank triggered")
+      console.log("update next rank triggered");
       const nextRank = await database("ranks")
         .where("id", Number(rank_id) + 1)
         .update("unlocked", true);
@@ -222,6 +228,7 @@ module.exports = {
   getChallengeQuestions,
   getShowRankChallenge,
   getCurrentLevel,
+  getNextRank,
   updateLessonScore,
   updateRankCompleted,
 };

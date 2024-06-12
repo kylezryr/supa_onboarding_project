@@ -41,7 +41,9 @@ function PointSliderText({
         className={`flex flex-row ${ptsTextPos} items-center m-0.5`}
         style={{ width: `${width}%` }}
       >
-        <p className="flex flex-row justify-center text-xs/[8px] min-w-16">{currentPoints} pts</p>
+        <p className="flex flex-row justify-center text-xs/[8px] min-w-16">
+          {currentPoints} pts
+        </p>
       </div>
       <div className="h-2 bg-black w-full rounded">
         <div

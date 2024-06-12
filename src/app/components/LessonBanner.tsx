@@ -28,7 +28,9 @@ function LessonBanner({
       className={`flex flex-col ${bgColor} ${textColor} justify-around items-start p-4 m-4 min-w-[80%] shadow-lg rounded-xl`}
     >
       <div className="flex flex-col pl-16 pr-16 items-start w-full">
-        <div className={`flex flex-row items-center m-4 justify-between ${borderColor} border-2 p-2 pl-8 pr-8 ml-0 w-full rounded-lg`}>
+        <div
+          className={`flex flex-row items-center m-4 justify-between ${borderColor} border-2 p-2 pl-8 pr-8 ml-0 w-full rounded-lg`}
+        >
           <div className="font-bold w-32">
             <p>Lesson {lessonNumber}</p>
           </div>
@@ -44,7 +46,9 @@ function LessonBanner({
           </div>
         </div>
         <div className="flex flex-row">
-          <div className={`p-2 border-2 ${borderColor} m-4 ml-0 pl-8 pr-8 rounded-lg font-bold`}>
+          <div
+            className={`p-2 border-2 ${borderColor} m-4 ml-0 pl-8 pr-8 rounded-lg font-bold`}
+          >
             {unlocked ? (
               <Link
                 href={
@@ -85,4 +89,3 @@ function LessonBanner({
 }
 
 export default LessonBanner;
-

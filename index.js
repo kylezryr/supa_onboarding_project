@@ -119,6 +119,13 @@ app.get("/userCurrentLevel", (request, response) => {
     .catch((error) => response.send(error));
 });
 
+app.get("/nextRank/:rank_id", (request, response) => {
+  queries
+    .getNextRank(request.params.rank_id)
+    .then((results) => response.send(results))
+    .catch((error) => response.send(error));
+});
+
 app.post(
   "/updateLessonScore/:lesson_id/:score/:rank_id",
   (request, response) => {

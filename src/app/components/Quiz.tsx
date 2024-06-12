@@ -14,7 +14,7 @@ function Quiz({
   let pointsScored = 0;
   const [finishedButtonColor, setFinishedButtonColor] =
     useState("bg-darkPrimary");
-  const [finished, setFinished] = useState(false)
+  const [finished, setFinished] = useState(false);
 
   const finishQuiz = () => {
     setFinished(true);
@@ -55,7 +55,7 @@ function Quiz({
       <div>
         <button
           className={`border-white border-2 font-bold p-2 rounded-lg m-1 ${finishedButtonColor}`}
-          style={{pointerEvents: finished ? "none" : "auto"}}
+          style={{ pointerEvents: finished ? "none" : "auto" }}
           onClick={finishQuiz}
         >
           Finish quiz

@@ -17,7 +17,7 @@ function RankChallenge({
   const [questions, setQuestions] = useState<ChallengeQuestionsType[]>([]);
   const [rankID, setRankID] = useState();
   const [finishedButtonColor, setFinishedButtonColor] =
-    useState("bg-neutral-300");
+    useState("bg-darkPrimary");
   const [rankChallengePassed, setRankChallengePassed] = useState(false);
   const [finished, setFinished] = useState(false);
 
@@ -58,7 +58,6 @@ function RankChallenge({
   };
 
   const finishChallenge = () => {
-    setFinishedButtonColor("bg-lime-600");
     setFinished(true);
     {
       questions.map((q, index) => {
@@ -77,6 +76,7 @@ function RankChallenge({
     }
     const allCorrect = answerMap.every((v) => v === true);
     setRankChallengePassed(allCorrect);
+    setFinishedButtonColor(allCorrect ? "bg-buttonCorrect" : "bg-buttonWrong");
   };
 
   const updateRankChallenge = () => {
@@ -127,7 +127,7 @@ function RankChallenge({
         })}
         <div className="flex flex-col items-center  m-2 ml-16 mr-16 text-white">
           <button
-            className={`border-white border-2 p-2 rounded-lg m-1 w-32 ${finishedButtonColor}`}
+            className={`border-white border-2 p-2 rounded-lg m-1 w-32 font-bold ${finishedButtonColor}`}
             onClick={finishChallenge}
           >
             Finish quiz
