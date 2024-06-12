@@ -112,6 +112,13 @@ app.get("/showRankChallenge/:rank_id", (request, response) => {
     .catch((error) => response.send(error));
 });
 
+app.get("/userCurrentLevel", (request, response) => {
+  queries
+    .getCurrentLevel()
+    .then((results) => response.send(results))
+    .catch((error) => response.send(error));
+});
+
 app.post(
   "/updateLessonScore/:lesson_id/:score/:rank_id",
   (request, response) => {

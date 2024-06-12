@@ -146,7 +146,7 @@ function Questions({
         <div className="flex flex-row justify-end">
           <button
             onClick={() => setShowPracticeQ(!showPracticeQ)}
-            className="m-8 border-2 border-white font-bold p-2 rounded-lg bg-neutral-300"
+            className="m-8 border-2 border-white font-bold p-2 rounded-lg bg-darkPrimary"
           >
             Practice
           </button>
@@ -175,7 +175,7 @@ function Questions({
         </p>
         <button
           onClick={() => setShowRealQ(!showRealQ)}
-          className="m-8 border-2 border-white font-bold p-2 rounded-lg bg-neutral-300"
+          className="m-8 border-2 border-white font-bold p-2 rounded-lg bg-darkPrimary"
         >
           Start quiz
         </button>

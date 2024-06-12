@@ -3,9 +3,7 @@
  * @returns { Promise<void> }
  */
 exports.up = function(knex) {
-    return knex.schema.alterTable("questions", function (table) {
-        table.integer("id").notNullable().alter();
-      });
+    return knex.schema.renameTable("userLevels", "user_levels");
 };
 
 /**
@@ -13,5 +11,5 @@ exports.up = function(knex) {
  * @returns { Promise<void> }
  */
 exports.down = function(knex) {
-    return knex.schema.dropTableIfExists("questions");
+    return knex.schema.dropTableIfExists("user_levels");
 };

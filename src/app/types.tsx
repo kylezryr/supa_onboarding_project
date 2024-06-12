@@ -68,3 +68,11 @@ export interface PointsType {
   questionNumber: number;
   points: number;
 }
+
+export interface LevelsType {
+  id: number;
+  level_number: number;
+  start_points: number;
+  end_points: number;
+  current_points: number;
+}

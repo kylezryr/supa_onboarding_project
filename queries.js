@@ -1,6 +1,8 @@
 const connection = require("./knexfile")[process.env.NODE_ENV || "development"];
 const database = require("knex")(connection);
 
+const knex = require("knex")
+
 const typesMap = new Map([
   ["boundingBox", "Bounding Box"],
   ["semantic", "Semantic"],
@@ -122,6 +124,31 @@ const getShowRankChallenge = async (rank_id) => {
   return result.length > 2;
 };
 
+//get the users current level based on their total points
+//returns level row
+const getCurrentLevel = async () => {
+  const totalPoints = await database("ranks")
+  .sum("current_points as total_points");
+  const userCurrentPoints = Number(totalPoints[0].total_points);
+
+  const result = await database("user_levels")
+  .select(
+    'id', 
+    'level_number', 
+    'start_points', 
+    'end_points'
+  )
+  .where('start_points', '<=', userCurrentPoints)
+  .andWhere('end_points', '>', userCurrentPoints)
+  .first();
+
+  if (result) {
+    result.current_points = userCurrentPoints - result.start_points;
+  }
+  
+  return result;
+}
+
 //updates the lesson's score only if the new score beats the current score
 //unlocks the next lesson once complete
 //also updates the associated rank's score
@@ -194,6 +221,7 @@ module.exports = {
   getLesson,
   getChallengeQuestions,
   getShowRankChallenge,
+  getCurrentLevel,
   updateLessonScore,
   updateRankCompleted,
 };

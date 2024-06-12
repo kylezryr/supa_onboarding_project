@@ -2,7 +2,18 @@ import React from "react";
 import RankSlider from "./RankSlider";
 // import picture from "../../assets/kyleramachandran.jpg";
 
-function ProfileHeader() {
+function ProfileHeader({
+  totalPoints, 
+  currentPoints, 
+  levelNumber,
+  startPoints,
+  } : 
+  {
+    totalPoints: number;
+    currentPoints: number;
+    levelNumber: number;
+    startPoints: number;
+}) {
   return (
     <div className="bg-stone-400">
       {/* <div className="bg-stone-400 h-4"></div> */}
@@ -21,7 +32,7 @@ function ProfileHeader() {
         </div>
 
         <div className="w-1/2">
-          <RankSlider totalPoints={1000} currentPoints={100} level={5} />
+          <RankSlider totalPoints={totalPoints} currentPoints={currentPoints} level={levelNumber} startPoints={startPoints}/>
         </div>
       </div>
     </div>

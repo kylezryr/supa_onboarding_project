@@ -13,10 +13,12 @@ function Quiz({
 }) {
   let pointsScored = 0;
   const [finishedButtonColor, setFinishedButtonColor] =
-    useState("bg-neutral-300");
+    useState("bg-darkPrimary");
+  const [finished, setFinished] = useState(false)
 
   const finishQuiz = () => {
-    setFinishedButtonColor("bg-lime-600");
+    setFinished(true);
+    setFinishedButtonColor("bg-buttonNeutral");
     {
       questions.map((q) => {
         const correctOption = document.getElementById(
@@ -52,7 +54,8 @@ function Quiz({
       </div>
       <div>
         <button
-          className={`border-black border-2 p-2 rounded-lg m-1 ${finishedButtonColor}`}
+          className={`border-white border-2 font-bold p-2 rounded-lg m-1 ${finishedButtonColor}`}
+          style={{pointerEvents: finished ? "none" : "auto"}}
           onClick={finishQuiz}
         >
           Finish quiz

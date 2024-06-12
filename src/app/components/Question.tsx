@@ -15,7 +15,7 @@ function Question({
   practice: boolean;
   points: number;
 }) {
-  const [buttonColour, setButtonColour] = useState("bg-neutral-300");
+  const [buttonColour, setButtonColour] = useState("bg-darkPrimary");
   const [answered, setAnswered] = useState(false);
   const [correct, setCorrect] = useState(false);
   const namePrefix = practice ? "P" : "R";
@@ -26,10 +26,10 @@ function Question({
       `${namePrefix}answerQ${question_number}O${correctAnswer}`,
     ) as HTMLInputElement;
     if (correctOption.checked) {
-      setButtonColour("bg-lime-600");
+      setButtonColour("bg-buttonCorrect");
       setCorrect(true);
     } else {
-      setButtonColour("bg-red-500");
+      setButtonColour("bg-buttonWrong");
       setCorrect(false);
     }
   };
@@ -59,7 +59,7 @@ function Question({
         })}
         <div className="flex flex-row items-center p-1">
           <button
-            className={`border-black border-2 p-1 m-1 rounded-lg ${buttonColour}`}
+            className={`text-white border-white border-2 p-1 m-1 rounded-lg ${buttonColour}`}
             onClick={checkAnswer}
           >
             Submit

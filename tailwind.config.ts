@@ -25,7 +25,10 @@ const config: Config = {
       'darkPrimary': '#8697C4',
       'lightPrimary': '#becbed',
       'accent': '#EDE8F5',
-      'link': '#2563EB'
+      'link': '#2563EB',
+      'buttonCorrect': '#65A30D',
+      'buttonWrong': '#EF4444',
+      'buttonNeutral': '#D4D4D4'
     }
   },
   plugins: [],

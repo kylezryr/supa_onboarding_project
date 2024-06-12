@@ -4,22 +4,25 @@ function RankSlider({
   totalPoints,
   currentPoints,
   level,
+  startPoints,
 }: {
   totalPoints: number;
   currentPoints: number;
   level: number;
+  startPoints: number;
 }) {
-  let width = (currentPoints / totalPoints) * 100;
+  let width = (currentPoints / (totalPoints - startPoints)) * 100;
   const startText = `Level ${level}`;
   const endText = `Level ${level + 1}`;
+  const ptsTextPos = width < 15 ? "justify-start" : "justify-end";
 
   return (
     <div className="flex flex-col">
       <div
-        className="flex flex-row justify-start items-center m-0.5"
+        className={`flex flex-row ${ptsTextPos} items-center m-0.5`}
         style={{ width: `${width}%` }}
       >
-        <p className="text-xs/[8px] min-w-16">{currentPoints} pts</p>
+        <p className="flex flex-row justify-center text-xs/[8px] min-w-16">{currentPoints} pts</p>
       </div>
       <div className="h-2 bg-black w-full rounded">
         <div
@@ -32,7 +35,7 @@ function RankSlider({
         <p className="m-2">{endText}</p>
       </div>
       <div className="flex flex-row justify-end items-center">
-        <p>{totalPoints - currentPoints} points to complete</p>
+        <p>{totalPoints - (currentPoints + startPoints)} points to complete</p>
       </div>
     </div>
   );
