@@ -173,7 +173,7 @@ function Lessons({
 
         {nextRank &&
           (nextRank.unlocked ? (
-            <div className="flex flex-row justify-between text-white ml-4 w-full pr-32 pl-32">
+            <div className="flex flex-row justify-between text-white ml-4 w-full pr-24 pl-24">
               <Link href={"/playground/" + params.type}>
                 {" "}
                 ← Back to {typesMap.get(params.type)}

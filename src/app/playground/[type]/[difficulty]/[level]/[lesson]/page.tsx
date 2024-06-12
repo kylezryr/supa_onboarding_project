@@ -106,7 +106,8 @@ function Questions({
         <p className="m-2">{lessonData?.title}</p>
         <p className="m-2">
           Skill: {typesMap.get(params.type)}{" "}
-          {diffNavigation.get(params.difficulty)} - Lesson {params.lesson}
+          {diffNavigation.get(params.difficulty)} {params.level} - Lesson{" "}
+          {params.lesson}
         </p>
         <p className="font-normal m-2 text-sm">{lessonData?.description}</p>
       </div>

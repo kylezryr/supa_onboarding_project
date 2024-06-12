@@ -198,10 +198,8 @@ const updateRankCompleted = async (rank_id) => {
   const total_points = rankData[0].total_points;
   const rankID = Number(rankData[0].id);
   const completed = rankData[0].completed;
-  console.log("rankdata: ", rankData);
   if (Number(current_points) == Number(total_points) && completed) {
     if (rankID != 9 || rankID != 18 || rankID != 27) {
-      console.log("update next rank triggered");
       const nextRank = await database("ranks")
         .where("id", Number(rank_id) + 1)
         .update("unlocked", true);
