@@ -7,7 +7,7 @@ module.exports = {
   development: {
     client: "pg",
     connection: {
-      host: "localhost",
+      host: "127.0.0.1",
       user: "kylezryr",
       password: "02082005K!",
       database: "onboarding",
