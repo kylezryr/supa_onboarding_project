@@ -24,6 +24,8 @@ function Questions({
   const [lessonData, setLessonData] = useState<LessonsType>();
   const [pointsScored, setPointsScored] = useState(0);
   const [quizFinished, setQuizFinished] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [unlocked, setUnlocked] = useState(false);
 
   const typesMap = new Map([
     ["boundingBox", "Bounding Box"],
@@ -37,6 +39,7 @@ function Questions({
   ]);
 
   const getQuestions = async () => {
+    setLoading(true);
     try {
       fetch(
         `http://localhost:9000/lessonID/${params.type}/${params.difficulty}/${params.level}/${params.lesson}`,
@@ -60,6 +63,8 @@ function Questions({
             })
             .then((data) => {
               setLessonData(data[0]);
+              setUnlocked(data[0].unlocked);
+              setLoading(false);
             });
         });
     } catch (error) {
@@ -102,91 +107,125 @@ function Questions({
 
   return (
     <div className="flex flex-col bg-darkBg min-h-screen">
-      <div className="flex flex-col bg-lightBg text-white font-bold items-start m-8 ml-16 mr-16 pl-4 h-auto justify-center shadow-lg rounded-lg">
-        <p className="m-2">{lessonData?.title}</p>
-        <p className="m-2">
-          Skill: {typesMap.get(params.type)}{" "}
-          {diffNavigation.get(params.difficulty)} {params.level} - Lesson{" "}
-          {params.lesson}
-        </p>
-        <p className="font-normal m-2 text-sm">{lessonData?.description}</p>
-      </div>
-      <div className="flex flex-col font-bold bg-lightBg text-white m-8 ml-16 mr-16 p-2 items-start shadow-lg rounded-lg">
-        <p className="m-2">Read this guide</p>
-        <p className="m-2">Watch this video</p>
-        <p className="m-2">Another teaching format</p>
-      </div>
-      <div className="bg-lightBg flex flex-col justify-center items-start text-white m-8 ml-16 mr-16 p-2 shadow-lg rounded-lg">
-        <p className="font-bold text-xl m-2 mb-4">Practice</p>
-        <p className="m-2">Test your knowledge of the skills in this course.</p>
-        <div className="flex flex-row justify-end">
-          <button
-            onClick={() => setShowPracticeQ(!showPracticeQ)}
-            className="m-8 border-2 border-white font-bold p-2 rounded-lg bg-darkPrimary"
-          >
-            Practice
-          </button>
-        </div>
-        {showPracticeQ &&
-          questions.map((q) => {
-            if (q.practice) {
-              return (
-                <Question
-                  question_text={q.question_text}
-                  question_number={q.question_number}
-                  answers={q.answers}
-                  correctAnswer={q.correct_answer}
-                  points={q.points}
-                  practice={q.practice}
+      {!loading &&
+        (unlocked ? (
+          <>
+            <div className="flex flex-col bg-lightBg text-white font-bold items-start m-8 ml-16 mr-16 pl-4 h-auto justify-center shadow-lg rounded-lg">
+              <p className="m-2">{lessonData?.title}</p>
+              <p className="m-2">
+                Skill: {typesMap.get(params.type)}{" "}
+                {diffNavigation.get(params.difficulty)} {params.level} - Lesson{" "}
+                {params.lesson}
+              </p>
+              <p className="font-normal m-2 text-sm">
+                {lessonData?.description}
+              </p>
+            </div>
+            <div className="flex flex-col font-bold bg-lightBg text-white m-8 ml-16 mr-16 p-2 items-start shadow-lg rounded-lg">
+              <p className="m-2">Read this guide</p>
+              <p className="m-2">Watch this video</p>
+              <p className="m-2">Another teaching format</p>
+            </div>
+            <div className="bg-lightBg flex flex-col justify-center items-start text-white m-8 ml-16 mr-16 p-2 shadow-lg rounded-lg">
+              <p className="font-bold text-xl m-2 mb-4">Practice</p>
+              <p className="m-2">
+                Test your knowledge of the skills in this course.
+              </p>
+              <div className="flex flex-row justify-end">
+                <button
+                  onClick={() => setShowPracticeQ(!showPracticeQ)}
+                  className="m-8 border-2 border-white font-bold p-2 rounded-lg bg-darkPrimary"
+                >
+                  Practice
+                </button>
+              </div>
+              {showPracticeQ &&
+                questions.map((q) => {
+                  if (q.practice) {
+                    return (
+                      <Question
+                        question_text={q.question_text}
+                        question_number={q.question_number}
+                        answers={q.answers}
+                        correctAnswer={q.correct_answer}
+                        points={q.points}
+                        practice={q.practice}
+                      />
+                    );
+                  }
+                })}
+            </div>
+            <div className="bg-lightBg flex flex-col justify-center items-start text-white m-8 ml-16 mr-16 p-2 shadow-lg rounded-lg">
+              <p className="font-bold text-xl m-2 mb-4">Lesson Quiz</p>
+              <p className="m-2">
+                Test your knowledge of the skills in this course.
+              </p>
+              <p className="m-2">
+                Complete this quiz to earn {lessonData?.total_points} Kaya
+                Points!
+              </p>
+              <button
+                onClick={() => setShowRealQ(!showRealQ)}
+                className="m-8 border-2 border-white font-bold p-2 rounded-lg bg-darkPrimary"
+              >
+                Start quiz
+              </button>
+              {showRealQ && (
+                <Quiz
+                  questions={questions.filter((q) => !q.practice)}
+                  pointsUpdater={setPointsScored}
+                  quizFinishedUpdater={setQuizFinished}
                 />
-              );
-            }
-          })}
-      </div>
-      <div className="bg-lightBg flex flex-col justify-center items-start text-white m-8 ml-16 mr-16 p-2 shadow-lg rounded-lg">
-        <p className="font-bold text-xl m-2 mb-4">Lesson Quiz</p>
-        <p className="m-2">Test your knowledge of the skills in this course.</p>
-        <p className="m-2">
-          Complete this quiz to earn {lessonData?.total_points} Kaya Points!
-        </p>
-        <button
-          onClick={() => setShowRealQ(!showRealQ)}
-          className="m-8 border-2 border-white font-bold p-2 rounded-lg bg-darkPrimary"
-        >
-          Start quiz
-        </button>
-        {showRealQ && (
-          <Quiz
-            questions={questions.filter((q) => !q.practice)}
-            pointsUpdater={setPointsScored}
-            quizFinishedUpdater={setQuizFinished}
-          />
-        )}
-        {quizFinished && (
-          <p className="m-1 font-bold">
-            {" "}
-            Finished! You scored: {pointsScored} out of{" "}
-            {lessonData?.total_points} points! You may return to the previous
-            page
-          </p>
-        )}
-      </div>
-      <div className="flex flex-row justify-center text-white ml-64 mr-64">
-        <Link
-          href={
-            "/playground/" +
-            params.type +
-            "/" +
-            params.difficulty +
-            "/" +
-            params.level
-          }
-        >
-          {" "}
-          ← Back to {typesMap.get(params.type)}{" "}
-          {diffNavigation.get(params.difficulty)} {params.level}
-        </Link>
-      </div>
+              )}
+              {quizFinished && (
+                <p className="m-1 font-bold">
+                  {" "}
+                  Finished! You scored: {pointsScored} out of{" "}
+                  {lessonData?.total_points} points! You may return to the
+                  previous page
+                </p>
+              )}
+            </div>
+            <div className="flex flex-row justify-center text-white ml-64 mr-64">
+              <Link
+                href={
+                  "/playground/" +
+                  params.type +
+                  "/" +
+                  params.difficulty +
+                  "/" +
+                  params.level
+                }
+              >
+                {" "}
+                ← Back to {typesMap.get(params.type)}{" "}
+                {diffNavigation.get(params.difficulty)} {params.level}
+              </Link>
+            </div>
+          </>
+        ) : (
+          <div className="flex flex-col items-center justify-center p-8">
+            <p className="text-3xl font-bold m-2 mb-8">
+              This lesson is not unlocked yet.
+            </p>
+            <div className="flex flex-row justify-center text-white ml-64 mr-64">
+              <Link
+                href={
+                  "/playground/" +
+                  params.type +
+                  "/" +
+                  params.difficulty +
+                  "/" +
+                  params.level
+                }
+              >
+                {" "}
+                ← Back to {typesMap.get(params.type)}{" "}
+                {diffNavigation.get(params.difficulty)} {params.level}
+              </Link>
+            </div>
+          </div>
+        ))}
     </div>
   );
 }

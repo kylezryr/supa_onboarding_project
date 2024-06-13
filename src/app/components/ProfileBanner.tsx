@@ -36,7 +36,9 @@ function ProfileBanner({
           />
         </div>
         <div className="flex flex-col items-center">
-          <p className="m-1 w-32">{difficultyColor + " " + difficultyNumber}</p>
+          <p className="m-1 w-32 text-xl">
+            {difficultyColor + " " + difficultyNumber}
+          </p>
           <div className="m-1 w-32 text-link">
             <Link href={"/playground/" + typesMap.get(type)}>{type}</Link>
           </div>

@@ -56,7 +56,7 @@ function PointSliderText({
         <p className="m-2">{endText}</p>
       </div>
       <div className="flex flex-row justify-end items-center">
-        <p>{totalPoints - currentPoints} points to complete</p>
+        <p className="mr-2">{totalPoints - currentPoints} points to complete</p>
       </div>
     </div>
   );

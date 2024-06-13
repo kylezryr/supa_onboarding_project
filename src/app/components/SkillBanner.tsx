@@ -15,7 +15,7 @@ function SkillBanner({
 }) {
   return (
     <div className="flex flex-row justify-around items-center w-auto bg-darkPrimary rounded-xl text-white flex-wrap h-20 m-4 p-4 font-bold shadow-lg">
-      <div className="text-link">
+      <div className="text-link text-xl">
         <Link href={"/playground/" + navigation}>{type}</Link>
       </div>
       <div className="flex flex-col w-1/3 items-center">

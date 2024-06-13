@@ -27,7 +27,7 @@ function TypeBanner({
   return (
     <>
       <div className="flex flex-row items-center justify-between bg-lightBg text-white font-bold m-4 p-4 shadow-lg rounded-xl">
-        <div className="w-2/3">
+        <div className="w-3/5">
           <PointSliderText
             totalPoints={total_points}
             currentPoints={current_points}
@@ -35,9 +35,9 @@ function TypeBanner({
             level={level}
           />
         </div>
-        <div className="flex flex-col items-center">
-          <p className="m-1 w-32 text-lg">{type}</p>
-          <p className="m-1 w-32">{difficultyColor + " " + difficultyNumber}</p>
+        <div className="flex flex-col justify-center items-start w-1/5">
+          <p className="m-1 text-xl">{type}</p>
+          <p className="m-1">{difficultyColor + " " + difficultyNumber}</p>
         </div>
       </div>
     </>

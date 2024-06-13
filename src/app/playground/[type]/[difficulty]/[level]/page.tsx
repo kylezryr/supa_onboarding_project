@@ -96,13 +96,19 @@ function Lessons({
             .then((data) => {
               setShowRankChallenge(data);
             });
-          fetch("http://localhost:9000/nextRank/" + rankID)
-            .then((response) => {
-              return response.json();
-            })
-            .then((data) => {
-              setNextRank(data);
-            });
+          if (
+            params.difficulty != "Red" &&
+            params.type != "Polygon" &&
+            params.level != 3
+          ) {
+            fetch("http://localhost:9000/nextRank/" + rankID)
+              .then((response) => {
+                return response.json();
+              })
+              .then((data) => {
+                setNextRank(data);
+              });
+          }
         });
     } catch (error) {
       console.log(error);
@@ -171,8 +177,8 @@ function Lessons({
           </div>
         </div>
 
-        {nextRank &&
-          (nextRank.unlocked ? (
+        {nextRank ? (
+          nextRank.unlocked ? (
             <div className="flex flex-row justify-between text-white ml-4 w-full pr-24 pl-24">
               <Link href={"/playground/" + params.type}>
                 {" "}
@@ -192,7 +198,15 @@ function Lessons({
                 ← Back to {typesMap.get(params.type)}
               </Link>
             </div>
-          ))}
+          )
+        ) : (
+          <div className="flex flex-row justify-center text-white w-full">
+            <Link href={"/playground/" + params.type}>
+              {" "}
+              ← Back to {typesMap.get(params.type)}
+            </Link>
+          </div>
+        )}
       </div>
     </>
   );

@@ -20,6 +20,8 @@ function RankChallenge({
     useState("bg-darkPrimary");
   const [rankChallengePassed, setRankChallengePassed] = useState(false);
   const [finished, setFinished] = useState(false);
+  const [unlocked, setUnlocked] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const typesMap = new Map([
     ["boundingBox", "Bounding Box"],
@@ -35,6 +37,7 @@ function RankChallenge({
 
   const getQuestions = async () => {
     try {
+      setLoading(true);
       fetch(
         `http://localhost:9000/rankID/${params.type}/${params.difficulty}/${params.level}`,
       )
@@ -50,6 +53,14 @@ function RankChallenge({
             })
             .then((data) => {
               setQuestions(data);
+            });
+          fetch(`http://localhost:9000/scores/${rankID}`)
+            .then((response) => {
+              return response.json();
+            })
+            .then((data) => {
+              setUnlocked(data[0].unlocked);
+              setLoading(false);
             });
         });
     } catch (error) {
@@ -79,7 +90,7 @@ function RankChallenge({
     setFinishedButtonColor(allCorrect ? "bg-buttonCorrect" : "bg-buttonWrong");
   };
 
-  const updateRankChallenge = () => {
+  const updateRankChallenge = async () => {
     if (rankChallengePassed) {
       try {
         fetch(`http://localhost:9000/updateRank/${rankID}`, {
@@ -103,70 +114,97 @@ function RankChallenge({
 
   return (
     <div className="min-h-screen bg-darkBg">
-      <div className="flex flex-col">
-        <div className="flex flex-col bg-lightBg text-white font-bold items-start m-8 ml-16 mr-16 p-4 h-auto justify-center rounded-lg">
-          <p className="m-2">
-            {typesMap.get(params.type)} {diffNavigation.get(params.difficulty)}{" "}
-            {params.level}- Rank Challenge
-          </p>
-          <p className="font-normal m-2 text-sm">
-            Get all the rank challenge questions right to unlock the next rank!
-          </p>
-        </div>
-        {questions.map((q) => {
-          return (
-            <div className="flex flex-col items-start justify-center bg-lightBg text-white m-16 mt-4 mb-4 p-4 rounded-lg">
-              <ChallengeQuestion
-                question_text={q.question_text}
-                question_number={q.question_number}
-                answers={q.answers}
-                correctAnswer={q.correct_answer}
-              />
-            </div>
-          );
-        })}
-        <div className="flex flex-col items-center  m-2 ml-16 mr-16 text-white">
-          <button
-            className={`border-white border-2 p-2 rounded-lg m-1 w-32 font-bold ${finishedButtonColor}`}
-            onClick={finishChallenge}
-          >
-            Finish quiz
-          </button>
-          {finished &&
-            (rankChallengePassed ? (
-              <p className="p-2 font-bold">
-                You have passed the rank challenge!
+      {!loading &&
+        (unlocked ? (
+          <div className="flex flex-col">
+            <div className="flex flex-col bg-lightBg text-white font-bold items-start m-8 ml-16 mr-16 p-4 h-auto justify-center rounded-lg">
+              <p className="m-2">
+                {typesMap.get(params.type)}{" "}
+                {diffNavigation.get(params.difficulty)} {params.level}- Rank
+                Challenge
               </p>
-            ) : (
-              <>
-                <p className="p-2 font-bold">
-                  You have failed the rank challenge, please try again.
-                </p>
-                {/* <Link
-                  href={`/playground/${params.type}/${params.difficulty}/${params.level}/rankChallenge`}
-                >
-                  Retry Rank Challenge
-                </Link> */}
-              </>
-            ))}
-        </div>
-        <div className="flex flex-row justify-center text-gray-400 ml-64 mr-64">
-          <Link
-            href={
-              "/playground/" +
-              params.type +
-              "/" +
-              params.difficulty +
-              "/" +
-              params.level
-            }
-          >
-            {" "}
-            ← Back to {typesMap.get(params.type)}{" "}
-            {diffNavigation.get(params.difficulty)} {params.level}
-          </Link>
-        </div>
-      </div>
+              <p className="font-normal m-2 text-sm">
+                Get all the rank challenge questions right to unlock the next
+                rank!
+              </p>
+            </div>
+            {questions.map((q) => {
+              return (
+                <div className="flex flex-col items-start justify-center bg-lightBg text-white m-16 mt-4 mb-4 p-4 rounded-lg">
+                  <ChallengeQuestion
+                    question_text={q.question_text}
+                    question_number={q.question_number}
+                    answers={q.answers}
+                    correctAnswer={q.correct_answer}
+                  />
+                </div>
+              );
+            })}
+            <div className="flex flex-col items-center  m-2 ml-16 mr-16 text-white">
+              <button
+                className={`border-white border-2 p-2 rounded-lg m-1 w-32 font-bold ${finishedButtonColor}`}
+                onClick={finishChallenge}
+              >
+                Finish quiz
+              </button>
+              {finished &&
+                (rankChallengePassed ? (
+                  <p className="p-2 font-bold">
+                    You have passed the rank challenge!
+                  </p>
+                ) : (
+                  <>
+                    <p className="p-2 font-bold">
+                      You have failed the rank challenge, please try again.
+                    </p>
+                    {/* <Link
+                      href={`/playground/${params.type}/${params.difficulty}/${params.level}/rankChallenge`}
+                    >
+                      Retry Rank Challenge
+                    </Link> */}
+                  </>
+                ))}
+            </div>
+            <div className="flex flex-row justify-center text-gray-400 ml-64 mr-64">
+              <Link
+                href={
+                  "/playground/" +
+                  params.type +
+                  "/" +
+                  params.difficulty +
+                  "/" +
+                  params.level
+                }
+              >
+                {" "}
+                ← Back to {typesMap.get(params.type)}{" "}
+                {diffNavigation.get(params.difficulty)} {params.level}
+              </Link>
+            </div>
+          </div>
+        ) : (
+          <div className="flex flex-col items-center justify-center p-8">
+            <p className="text-3xl font-bold m-2 mb-8">
+              This rank challenge is not unlocked yet.
+            </p>
+            <div className="flex flex-row justify-center text-white ml-64 mr-64">
+              <Link
+                href={
+                  "/playground/" +
+                  params.type +
+                  "/" +
+                  params.difficulty +
+                  "/" +
+                  params.level
+                }
+              >
+                {" "}
+                ← Back to {typesMap.get(params.type)}{" "}
+                {diffNavigation.get(params.difficulty)} {params.level}
+              </Link>
+            </div>
+          </div>
+        ))}
     </div>
   );
 }

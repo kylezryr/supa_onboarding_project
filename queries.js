@@ -162,8 +162,9 @@ const getNextRank = async (rank_id) => {
 //but rank doesnt update)
 const updateLessonScore = async (lesson_id, score, rank_id) => {
   const scoreData = await database("lessons")
-    .select("current_points")
+    .select("current_points", "total_points")
     .where("id", lesson_id);
+
   if (Number(score) >= Number(scoreData[0].current_points)) {
     const result = await database("lessons")
       .where("id", lesson_id)
@@ -181,17 +182,21 @@ const updateLessonScore = async (lesson_id, score, rank_id) => {
   }
 
   //unlocking the next lesson
-  const nextLesson = await database("lessons")
-    .where("id", Number(lesson_id) + 1)
-    .update("unlocked", true);
+  if (Number(score) > scoreData[0].total_points / 2) {
+    const nextLesson = await database("lessons")
+      .where("id", Number(lesson_id) + 1)
+      .update("unlocked", true);
+  }
 };
 
 //mark the current rank as complete and unlocks the next rank if total points = current points
 //a rank is only complete once the user passes the rank challenge
 const updateRankCompleted = async (rank_id) => {
-  const completedData = await database("ranks")
-    .where("id", rank_id)
-    .update("completed", true);
+  if (rankID != 9 || rankID != 18 || rankID != 27) {
+    const completedData = await database("ranks")
+      .where("id", rank_id)
+      .update("completed", true);
+  }
 
   const rankData = await database("ranks").select("*").where("id", rank_id);
   const current_points = rankData[0].current_points;

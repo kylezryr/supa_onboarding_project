@@ -29,7 +29,7 @@ function DifficultyBanner({
         <div
           className={`flex flex-row items-center m-4 justify-between ${borderColor} border-2 p-2 pl-8 pr-8 ml-0 w-full rounded-lg`}
         >
-          <div className="font-bold w-32">
+          <div className="font-bold w-32 text-xl">
             <p>
               {difficulty} {level}
             </p>
