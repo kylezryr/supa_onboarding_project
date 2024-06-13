@@ -39,7 +39,7 @@ function RankChallenge({
     try {
       setLoading(true);
       fetch(
-        `http://localhost:9000/rankID/${params.type}/${params.difficulty}/${params.level}`,
+        `http://18.140.200.64:9000/rankID/${params.type}/${params.difficulty}/${params.level}`,
       )
         .then((response) => {
           return response.json();
@@ -47,14 +47,14 @@ function RankChallenge({
         .then((data) => {
           const receivedRankID = data[0].id;
           setRankID(receivedRankID);
-          fetch(`http://localhost:9000/challengeQuestions/${receivedRankID}`)
+          fetch(`http://18.140.200.64:9000/challengeQuestions/${receivedRankID}`)
             .then((response) => {
               return response.json();
             })
             .then((data) => {
               setQuestions(data);
             });
-          fetch(`http://localhost:9000/scores/${receivedRankID}`)
+          fetch(`http://18.140.200.64:9000/scores/${receivedRankID}`)
             .then((response) => {
               return response.json();
             })
@@ -94,7 +94,7 @@ function RankChallenge({
   const updateRankChallenge = async () => {
     if (rankChallengePassed) {
       try {
-        fetch(`http://localhost:9000/updateRank/${rankID}`, {
+        fetch(`http://18.140.200.64:9000/updateRank/${rankID}`, {
           method: "POST",
         }).then((response) => {
           console.log("update successful");

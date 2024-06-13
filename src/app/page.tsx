@@ -15,7 +15,7 @@ export default function Home() {
 
   const getMaxRanks = async () => {
     try {
-      fetch("http://localhost:9000/maxRanks")
+      fetch("http://18.140.200.64:9000/maxRanks")
         .then((response) => {
           return response.json();
         })
@@ -30,7 +30,7 @@ export default function Home() {
   const getCurrentLevel = async () => {
     setLoading(true);
     try {
-      fetch("http://localhost:9000/userCurrentLevel")
+      fetch("http://18.140.200.64:9000/userCurrentLevel")
         .then((response) => {
           return response.json();
         })
