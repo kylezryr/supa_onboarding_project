@@ -54,11 +54,12 @@ function RankChallenge({
             .then((data) => {
               setQuestions(data);
             });
-          fetch(`http://localhost:9000/scores/${rankID}`)
+          fetch(`http://localhost:9000/scores/${receivedRankID}`)
             .then((response) => {
               return response.json();
             })
             .then((data) => {
+              console.log("score", data)
               setUnlocked(data[0].unlocked);
               setLoading(false);
             });
