@@ -8,8 +8,8 @@ module.exports = {
     client: "pg",
     connection: {
       host: "127.0.0.1",
-      user: "kylezryr",
-      password: "02082005K!",
+      user: "postgres",
+      password: "postgres",
       database: "onboarding",
     },
   },
