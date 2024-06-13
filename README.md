@@ -1,3 +1,5 @@
+This is my onboarding project for my Software Engineering Internship at SUPA from May - August in the summer of 2024. I was given 3 weeks to create a web application from scratch and was provided with wireframe designs and product requirements. 
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
