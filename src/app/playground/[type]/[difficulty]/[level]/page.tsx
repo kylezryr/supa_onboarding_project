@@ -47,7 +47,7 @@ function Lessons({
   const getLessons = async () => {
     try {
       fetch(
-        "http://localhost:9000/rankID/" +
+        "http://18.140.246.157:9000/rankID/" +
           params.type +
           "/" +
           params.difficulty +
@@ -60,7 +60,7 @@ function Lessons({
         .then((data) => {
           const rankID = data[0].id;
           setRankID(rankID);
-          fetch("http://localhost:9000/lessons/" + rankID)
+          fetch("http://18.140.246.157:9000/lessons/" + rankID)
             .then((response) => {
               return response.json();
             })
@@ -76,7 +76,7 @@ function Lessons({
   const getShowRankChallenge = async () => {
     try {
       fetch(
-        "http://localhost:9000/rankID/" +
+        "http://18.140.246.157:9000/rankID/" +
           params.type +
           "/" +
           params.difficulty +
@@ -89,7 +89,7 @@ function Lessons({
         .then((data) => {
           const rankID = data[0].id;
           setRankID(rankID);
-          fetch("http://localhost:9000/showRankChallenge/" + rankID)
+          fetch("http://18.140.246.157:9000/showRankChallenge/" + rankID)
             .then((response) => {
               return response.json();
             })
@@ -101,7 +101,7 @@ function Lessons({
             params.type != "Polygon" &&
             params.level != 3
           ) {
-            fetch("http://localhost:9000/nextRank/" + rankID)
+            fetch("http://18.140.246.157:9000/nextRank/" + rankID)
               .then((response) => {
                 return response.json();
               })

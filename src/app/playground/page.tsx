@@ -13,7 +13,7 @@ function Skills() {
 
   const getSkills = async () => {
     try {
-      fetch("http://localhost:9000")
+      fetch("http://18.140.246.157:9000")
         .then((response) => {
           return response.json();
         })
@@ -28,7 +28,7 @@ function Skills() {
   const getScores = async () => {
     try {
       setIsLoading(true);
-      fetch(`http://localhost:9000/typeScores`)
+      fetch(`http://18.140.246.157:9000/typeScores`)
         .then((response) => {
           return response.json();
         })

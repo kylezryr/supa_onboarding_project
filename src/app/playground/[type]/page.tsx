@@ -31,7 +31,7 @@ function Type({ params }: { params: { type: string } }) {
   const getDifficulties = async () => {
     setLoading(true);
     try {
-      fetch("http://localhost:9000/difficulties/" + typesMap.get(params.type))
+      fetch("http://18.140.246.157:9000/difficulties/" + typesMap.get(params.type))
         .then((response) => {
           return response.json();
         })
@@ -63,7 +63,7 @@ function Type({ params }: { params: { type: string } }) {
   const getMaxRanks = async () => {
     setLoading(true);
     try {
-      fetch("http://localhost:9000/maxRanks")
+      fetch("http://18.140.246.157:9000/maxRanks")
         .then((response) => {
           return response.json();
         })
