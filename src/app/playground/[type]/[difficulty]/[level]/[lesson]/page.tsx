@@ -42,7 +42,7 @@ function Questions({
     setLoading(true);
     try {
       fetch(
-        `http://18.140.200.64:9000/lessonID/${params.type}/${params.difficulty}/${params.level}/${params.lesson}`,
+        `http://localhost:9000/lessonID/${params.type}/${params.difficulty}/${params.level}/${params.lesson}`,
       )
         .then((response) => {
           return response.json();
@@ -50,14 +50,14 @@ function Questions({
         .then((data) => {
           const receivedLessonID = data[0].id;
           setLessonID(receivedLessonID);
-          fetch("http://18.140.200.64:9000/questions/" + receivedLessonID)
+          fetch("http://localhost:9000/questions/" + receivedLessonID)
             .then((response) => {
               return response.json();
             })
             .then((data) => {
               setQuestions(data);
             });
-          fetch("http://18.140.200.64:9000/lesson/" + receivedLessonID)
+          fetch("http://localhost:9000/lesson/" + receivedLessonID)
             .then((response) => {
               return response.json();
             })
@@ -75,7 +75,7 @@ function Questions({
   const updateLessonScore = async () => {
     try {
       fetch(
-        `http://18.140.200.64:9000/rankID/${params.type}/${params.difficulty}/${params.level}`,
+        `http://localhost:9000/rankID/${params.type}/${params.difficulty}/${params.level}`,
       )
         .then((response) => {
           return response.json();
@@ -84,7 +84,7 @@ function Questions({
           const receivedRankID = data[0].id;
           setRankID(receivedRankID);
           fetch(
-            `http://18.140.200.64:9000/updateLessonScore/${lessonID}/${pointsScored}/${receivedRankID}`,
+            `http://localhost:9000/updateLessonScore/${lessonID}/${pointsScored}/${receivedRankID}`,
             {
               method: "POST",
             },
